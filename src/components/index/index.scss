@@ -1,0 +1,14 @@
+@import '../header/header.scss';
+
+:root {
+    --background: #eee;
+    --backgroundInverted: #223;
+    --font: #223;
+    --fontInverted: #eee;
+}
+
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+}
