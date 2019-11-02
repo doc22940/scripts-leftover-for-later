@@ -1,2 +1,4 @@
 import './index.scss';
-import '../header/header.js';
+import { Component } from '../../helpers/component.js';
+
+new Component();
