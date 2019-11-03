@@ -1,0 +1,23 @@
+:root {
+    --currentViewport: 'sm'; 
+}
+
+@media screen and (min-width: $mdWidth) {
+    :root {
+        --currentViewport: 'md'; 
+    }
+}
+
+@media screen and (min-width: $lgWidth) {
+    :root {
+        --currentViewport: 'lg'; 
+    }
+}
+
+[data-component="viewportManager"] {
+    display: none;
+
+    &::before {
+        content: var(--currentViewport);
+    }
+}

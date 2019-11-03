@@ -1,4 +1,5 @@
-@import '../header/header.scss';
+$mdWidth: 680px;
+$lgWidth: 1025px;
 
 :root {
     --background: #eee;
@@ -6,6 +7,9 @@
     --font: #223;
     --fontInverted: #eee;
 }
+
+@import '../header/header.scss';
+@import '../viewportManager/viewportManager.scss';
 
 body {
     font-family: sans-serif;
