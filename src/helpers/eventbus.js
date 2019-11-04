@@ -1,41 +1,44 @@
 /**
- * Event bus by Pierfrancesco Soffritti
+ * Based on Event bus by Pierfrancesco Soffritti
  * https://medium.com/@soffritti.pierfrancesco/create-a-simple-event-bus-in-javascript-8aa0370b3969
  *
  * subscriptions data format:
  * { eventType: { id: callback } }
  */
-const subscriptions = {};
-const getNextUniqueId = getIdGenerator();
 
-function subscribe(eventType, callback) {
-    const id = getNextUniqueId();
+module.exports = class EventBus {
+    constructor() {
+        this.subscriptions = {};
+        this.lastId = 0;
+    }
 
-    if (!subscriptions[eventType]) subscriptions[eventType] = { };
+    subscribe(eventType, callback) {
+        const id = this.lastId + 1;
+        this.lastId = id;
 
-    subscriptions[eventType][id] = callback;
+        if (!this.subscriptions[eventType]) {
+            this.subscriptions[eventType] = {};
+        }
 
-    return {
-        unsubscribe: () => {
-            delete subscriptions[eventType][id];
-            if (Object.keys(subscriptions[eventType]).length === 0) delete subscriptions[eventType];
-        },
-    };
-}
+        this.subscriptions[eventType][id] = callback;
 
-function publish(eventType, arg) {
-    if (!subscriptions[eventType]) return;
+        return {
+            unsubscribe: () => {
+                delete this.subscriptions[eventType][id];
+                if (Object.keys(this.subscriptions[eventType]).length === 0) {
+                    delete this.subscriptions[eventType];
+                }
+            },
+        };
+    }
 
-    Object.keys(subscriptions[eventType]).forEach((key) => subscriptions[eventType][key](arg));
-}
+    publish(eventType, arg) {
+        if (!this.subscriptions[eventType]) {
+            return;
+        }
 
-function getIdGenerator() {
-    let lastId = 0;
-
-    return function getNextUniqueId() {
-        lastId += 1;
-        return lastId;
-    };
-}
-
-module.exports = { publish, subscribe };
+        Object.keys(this.subscriptions[eventType]).forEach(
+            (key) => this.subscriptions[eventType][key](arg)
+        );
+    }
+};
