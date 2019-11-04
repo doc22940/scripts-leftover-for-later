@@ -1,5 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 
 module.exports = {
     entry: "./src/components/index/index.js",
@@ -29,18 +31,15 @@ module.exports = {
                     }
                 }
             }, {
-                test: /\.scss$/,
-                use: [{
-                    loader: "style-loader"
-                }, {
-                    loader: "css-loader", options: {
-                        sourceMap: true
+                test: /\.(scss|sass|css)$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    { loader: 'css-loader', options: { url: false, sourceMap: true } },
+                    {
+                        loader: 'sass-loader',
+                        options: { sourceMap: true }
                     }
-                }, {
-                    loader: "sass-loader", options: {
-                        sourceMap: true
-                    }
-                }]
+                ]
             },
         ]
     },
@@ -50,6 +49,13 @@ module.exports = {
             title: "Some Basic Components",
             template: "./src/components/index/index.html",
             filename: "./index.html" //relative to root of the application
+        }),
+        new MiniCssExtractPlugin({
+            filename: 'styles.css',
+            chunkFilename: '[id].css'
+        }),
+        new ScriptExtHtmlWebpackPlugin({
+            preload: /\.js$/,
         })
     ]
 };
