@@ -35,6 +35,6 @@ module.exports = class ViewportManager {
 
     publishEvent() {
         this.el.setAttribute('data-breakpoint', this.breakpoint);
-        eventBus.publish("onViewportChange", this.breakpoint);
+        eventBus.publish('onViewportChange', this.breakpoint);
     }
-}
+};

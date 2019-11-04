@@ -1,5 +1,8 @@
 module.exports = {
     root: true,
+    "env": {
+        "browser": true,
+    },
     parserOptions: {
         parser: "babel-eslint"
     },
@@ -25,6 +28,7 @@ module.exports = {
             "ignoreStrings": true,
             "ignoreTemplateLiterals": true,
         }],
+        "no-new": 0,
         "no-plusplus": ["error", {
             "allowForLoopAfterthoughts": true
         }],
@@ -35,5 +39,9 @@ module.exports = {
             exports: 'always-multiline',
             functions: 'never',
         }],
+        'no-console': ['error', {
+            'allow': ['warn', 'error']
+            }
+        ]
     },
 }
