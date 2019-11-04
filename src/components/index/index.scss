@@ -3,13 +3,18 @@ $lgWidth: 1025px;
 
 :root {
     --background: #eee;
-    --backgroundInverted: #223;
-    --font: #223;
+    --backgroundInverted: #222;
+    --font: #222;
     --fontInverted: #eee;
+    --accent: #f06;
 }
 
 @import '../header/header.scss';
 @import '../viewportManager/viewportManager.scss';
+
+* {
+    box-sizing: border-box;
+}
 
 body {
     font-family: sans-serif;

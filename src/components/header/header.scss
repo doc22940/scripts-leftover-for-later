@@ -1,6 +1,49 @@
 .header {
+    display: flex;
+    justify-content: space-between;
     width: 100%;
     padding: 1em;
     background-color: var(--backgroundInverted);
     color: var(--fontInverted);
+
+    &__title {
+        margin: 0;
+    }
+
+    &__home-link {
+        color: inherit;
+
+        &:hover {
+            text-decoration-color: var(--accent);
+        }
+    } 
+
+    &__menu-button {
+        flex: 0 0 calc(7ch + var(--menuButtonSize));
+        display: flex;
+        align-items: center;
+        margin-left: 2em;
+        font-size: 1em;
+        appearance: none;
+        border: none;
+        background: none;
+        color: inherit;
+        cursor: pointer;
+    }
+
+    &__menu-icon {
+        margin-right: 1ch;
+
+        *:hover > & {
+            color: var(--accent);
+        }
+    }
+}
+
+@media screen and (min-width: $lgWidth) {
+    .header {
+        &__menu-button {
+            display: none;
+        }
+    }
 }
