@@ -1,0 +1,8 @@
+.dev-post-teaser {
+    transition: opacity .2s ease-out;
+    opacity: 0;
+
+    &[data-state='loaded'] {
+        opacity: 1;
+    }
+}

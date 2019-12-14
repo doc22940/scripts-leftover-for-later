@@ -19,6 +19,7 @@ $lgWidth: 1025px;
 @import '../header/header.scss';
 @import '../mainMenu/mainMenu.scss';
 @import '../viewportManager/viewportManager.scss';
+@import '../devPostTeaser/devPostTeaser.scss';
 
 * {
     box-sizing: border-box;
@@ -38,4 +39,8 @@ a {
     &:hover {
         text-decoration-color: var(--accent);
     }
+}
+
+main {
+    padding: 0 var(--spacing-x);
 }
