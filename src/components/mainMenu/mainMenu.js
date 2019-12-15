@@ -1,41 +1,51 @@
 module.exports = class MainMenu {
     constructor(el) {
         this.el = el;
-        this.isExpanded = false;
+
+        this.StateMachine = new StateMachine(this, {
+            closed: {
+                event: 'onMenuClose',
+                on: 'closeMenu',
+            },
+            open: {
+                event: 'onMenuOpen',
+                on: 'openMenu',
+            },
+            full: {
+                event: 'onMenuViewportLg',
+                on: 'disable',
+                off: 'closeMenu',
+            },
+        });
 
         this.init();
     }
 
     init() {
-        EventBus.subscribe('onMenuToggle', () => {
-            this.toggleMenu(true);
-        });
-
-        EventBus.subscribe('onOverlayClose', () => {
-            this.toggleMenu(false);
-        });
-
+        EventBus.subscribe('onOverlayClose', () => { EventBus.publish('onMenuClose', this.el); });
+        EventBus.subscribe('onMenuToggle', () => { EventBus.publish('onMenuOpen', this.el); });
         EventBus.subscribe('onViewportChange', (viewport) => {
-            this.onViewportChange(viewport);
+            if (viewport === 'lg') {
+                EventBus.publish('onMenuViewportLg', this.el);
+            } else {
+                EventBus.publish('onMenuClose', this.el);
+            }
         });
     }
 
-    toggleMenu(toggle) {
-        this.isExpanded = toggle;
-        this.el.setAttribute('aria-expanded', toggle);
-        if (toggle) {
-            EventBus.publish('onMenuOpen', this.el);
-        } else {
-            EventBus.publish('onMenuClose', this.el);
+    openMenu() {
+        if (this.StateMachine.currentState !== 'full') {
+            this.el.setAttribute('aria-expanded', true);
         }
     }
 
-    onViewportChange(viewport) {
-        if (viewport === 'lg') {
-            this.toggleMenu(false);
-            this.el.removeAttribute('aria-expanded');
-        } else {
-            this.el.setAttribute('aria-expanded', this.isExpanded);
+    closeMenu() {
+        if (this.StateMachine.currentState !== 'full') {
+            this.el.setAttribute('aria-expanded', false);
         }
+    }
+
+    disable() {
+        this.el.removeAttribute('aria-expanded');
     }
 };

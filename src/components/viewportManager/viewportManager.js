@@ -18,7 +18,11 @@ module.exports = class ViewportManager {
     }
 
     getBreakpoint() {
-        return window.getComputedStyle(this.el, ':before').getPropertyValue('content').split('"').filter(Boolean)
+        return window
+            .getComputedStyle(this.el, ':before')
+            .getPropertyValue('content')
+            .split('"')
+            .filter(Boolean)
             .join('"');
     }
 

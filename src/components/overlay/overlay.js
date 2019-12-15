@@ -9,7 +9,7 @@ module.exports = class Overlay {
 
     init() {
         EventBus.subscribe('onMenuOpen', (menu) => { this.openOverlay(menu); });
-        EventBus.subscribe('onMenuClose', (menu) => { this.closeOverlay(menu); });
+        EventBus.subscribe('onMenuViewportLg', (menu) => { this.closeOverlay(menu); });
 
         this.el.addEventListener('click', () => {
             this.closeOverlay(true, false);

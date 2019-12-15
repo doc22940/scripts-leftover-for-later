@@ -7,6 +7,7 @@ export default class StateMachine {
 
         this.component = component;
         this.states = states;
+        this.currentState = String();
 
         this.addEventMethods();
     }
@@ -15,20 +16,33 @@ export default class StateMachine {
         Object.keys(this.states).forEach((index) => {
             const state = this.states[index];
             EventBus.subscribe(state.event, (eventEl) => {
-                if (this.isThisInstance(eventEl)) {
-                    this.registerStateTransitionMethods(state);
-                    this.component.el.dataset.state = index;
-                }
+                this.changeState(index, eventEl);
             });
         });
+    }
+
+    changeState(newState, eventEl) {
+        if (newState === this.currentState) {
+            return;
+        }
+
+        if (this.isThisInstance(eventEl)) {
+            this.triggerStateTransitionMethods(this.states[newState]);
+            this.updateState(newState);
+        }
     }
 
     isThisInstance(eventEl) {
         return eventEl === this.component.el;
     }
 
-    registerStateTransitionMethods(state) {
+    triggerStateTransitionMethods(state) {
         if (state.on) this.component[state.on]();
-        if (state.off) this.component[state.off]();
+        if (this.currentState.off) this.component[this.currentState.off]();
+    }
+
+    updateState(newState) {
+        this.component.el.dataset.state = newState;
+        this.currentState = newState;
     }
 }
