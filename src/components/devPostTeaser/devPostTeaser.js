@@ -5,10 +5,13 @@ module.exports = class devPostTeaser {
         this.el = el;
         this.titleEl = el.querySelector('[data-dev-post-teaser-el="title"]');
         this.linkEl = el.querySelector('[data-dev-post-teaser-el="link"]');
-        this.bodyEl = el.querySelector('[data-dev-post-teaser-el="body"]');
+        this.reactionsEl = el.querySelector('[data-dev-post-teaser-el="reactions"]');
+        this.commentsEl = el.querySelector('[data-dev-post-teaser-el="comments"]');
+        this.postData = Object();
         this.api = 'https://dev.to/api/articles';
         this.id = this.el.dataset.devPostTeaserId ? this.el.dataset.devPostTeaserId : null;
         this.postTitle = String();
+        this.errorMessage = null;
 
         this.StateMachine = new Global.StateMachine(this, {
             loading: {
@@ -33,6 +36,7 @@ module.exports = class devPostTeaser {
 
     init() {
         if (!this.id) {
+            this.errorMessage = 'No post id set';
             Global.EventBus.publish('devPostTeaserError', this.el);
             return;
         }
@@ -45,22 +49,35 @@ module.exports = class devPostTeaser {
         })
             .then((response) => response.text())
             .then((responseText) => this.parsePost(responseText))
-            .catch(() => {
+            .catch((error) => {
+                this.errorMessage = error;
                 Global.EventBus.publish('devPostTeaserError', this.el);
             });
     }
 
     parsePost(postResponse) {
         if (!postResponse) {
+            this.errorMessage = 'No post reponse';
             Global.EventBus.publish('devPostTeaserError', this.el);
             return;
         }
 
         try {
             const postObj = JSON.parse(postResponse);
-            this.postLink = postObj.url ? postObj.url : this.postLink;
-            this.postTitle = postObj.title ? postObj.title : this.postTitle;
+            if (postObj.url) {
+                this.postData.link = postObj.url;
+            }
+            if (postObj.title) {
+                this.postData.title = postObj.title;
+            }
+            if (postObj.positive_reactions_count) {
+                this.postData.reactions = postObj.positive_reactions_count;
+            }
+            if (postObj.comments_count) {
+                this.postData.comments = postObj.comments_count;
+            }
         } catch (e) {
+            this.errorMessage = 'Could\'t parse post object';
             Global.EventBus.publish('devPostTeaserError', this.el);
             return;
         }
@@ -69,11 +86,13 @@ module.exports = class devPostTeaser {
     }
 
     displayPost() {
-        this.linkEl.setAttribute('href', this.postLink);
-        this.titleEl.innerText = this.postTitle;
+        this.linkEl.setAttribute('href', this.postData.link);
+        this.titleEl.innerText = this.postData.title;
+        this.reactionsEl.innerText = this.postData.reactions > 0 ? this.postData.reactions : 0;
+        this.commentsEl.innerText = this.postData.comments > 0 ? this.postData.comments : 0;
     }
 
     throwError() {
-        console.error('post failed', this.id);
+        console.error('post failed', this.id, this.errorMessage);
     }
 };

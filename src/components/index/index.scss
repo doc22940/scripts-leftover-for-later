@@ -8,8 +8,8 @@ $lgWidth: 1025px;
     --fontInverted: #eee;
     --accent: #f06;
 
-    --spacing-x: 16px;
-    --spacing-y: 16px;
+    --spacing-x: 1em;
+    --spacing-y: 1em;
 
     --z-overlay: 100;
     --z-menu: 110;
@@ -42,5 +42,9 @@ a {
 }
 
 main {
-    padding: 0 var(--spacing-x);
+    padding: 0 var(--spacing-x) var(--spacing-y);
+
+    * + * {
+        margin-top: var(--spacing-y);
+    }
 }

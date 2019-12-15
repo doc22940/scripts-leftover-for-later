@@ -1,8 +1,21 @@
 .dev-post-teaser {
+    padding-top: var(--spacing-y);
+    padding-bottom: calc(2 * var(--spacing-y));
     transition: opacity .2s ease-out;
     opacity: 0;
 
-    &[data-state='loaded'] {
+    & + & {
+        padding-top: calc(2 * var(--spacing-y));
+        border-top: 0.1em solid var(--font);
+        margin-top: 0;
+    }
+
+    &[data-state="loaded"] {
         opacity: 1;
+    }
+
+    &__reactions,
+    &__comments {
+        margin-right: var(--spacing-x);
     }
 }
