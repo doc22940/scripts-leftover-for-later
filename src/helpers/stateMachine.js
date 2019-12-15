@@ -1,5 +1,3 @@
-const Global = require('./globals.js');
-
 export default class StateMachine {
     constructor(component, states) {
         if (!component || !states) {
@@ -16,7 +14,7 @@ export default class StateMachine {
     addEventMethods() {
         Object.keys(this.states).forEach((index) => {
             const state = this.states[index];
-            Global.EventBus.subscribe(state.event, (eventEl) => {
+            EventBus.subscribe(state.event, (eventEl) => {
                 if (this.isThisInstance(eventEl)) {
                     this.registerStateTransitionMethods(state);
                     this.component.el.dataset.state = index;

@@ -1,5 +1,3 @@
-const Global = require('../../helpers/globals.js');
-
 module.exports = class ViewportManager {
     constructor(el) {
         this.el = el;
@@ -35,6 +33,6 @@ module.exports = class ViewportManager {
 
     publishEvent() {
         this.el.setAttribute('data-breakpoint', this.breakpoint);
-        Global.EventBus.publish('onViewportChange', this.breakpoint);
+        EventBus.publish('onViewportChange', this.breakpoint);
     }
 };

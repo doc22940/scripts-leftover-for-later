@@ -1,5 +1,3 @@
-const Global = require('../../helpers/globals.js');
-
 module.exports = class devPostTeaser {
     constructor(el) {
         this.el = el;
@@ -13,7 +11,7 @@ module.exports = class devPostTeaser {
         this.postTitle = String();
         this.errorMessage = null;
 
-        this.StateMachine = new Global.StateMachine(this, {
+        this.StateMachine = new StateMachine(this, {
             loading: {
                 event: 'devPostTeaserLoading',
                 on: 'loadPost',
@@ -37,10 +35,10 @@ module.exports = class devPostTeaser {
     init() {
         if (!this.id) {
             this.errorMessage = 'No post id set';
-            Global.EventBus.publish('devPostTeaserError', this.el);
+            EventBus.publish('devPostTeaserError', this.el);
             return;
         }
-        Global.EventBus.publish('devPostTeaserLoading', this.el);
+        EventBus.publish('devPostTeaserLoading', this.el);
     }
 
     loadPost() {
@@ -51,14 +49,14 @@ module.exports = class devPostTeaser {
             .then((responseText) => this.parsePost(responseText))
             .catch((error) => {
                 this.errorMessage = error;
-                Global.EventBus.publish('devPostTeaserError', this.el);
+                EventBus.publish('devPostTeaserError', this.el);
             });
     }
 
     parsePost(postResponse) {
         if (!postResponse) {
             this.errorMessage = 'No post reponse';
-            Global.EventBus.publish('devPostTeaserError', this.el);
+            EventBus.publish('devPostTeaserError', this.el);
             return;
         }
 
@@ -78,11 +76,11 @@ module.exports = class devPostTeaser {
             }
         } catch (e) {
             this.errorMessage = 'Could\'t parse post object';
-            Global.EventBus.publish('devPostTeaserError', this.el);
+            EventBus.publish('devPostTeaserError', this.el);
             return;
         }
 
-        Global.EventBus.publish('devPostTeaserLoaded', this.el);
+        EventBus.publish('devPostTeaserLoaded', this.el);
     }
 
     displayPost() {

@@ -1,5 +1,3 @@
-const Global = require('../../helpers/globals.js');
-
 module.exports = class Overlay {
     constructor(el) {
         this.el = el;
@@ -10,8 +8,8 @@ module.exports = class Overlay {
     }
 
     init() {
-        Global.EventBus.subscribe('onMenuOpen', (menu) => { this.openOverlay(menu); });
-        Global.EventBus.subscribe('onMenuClose', (menu) => { this.closeOverlay(menu); });
+        EventBus.subscribe('onMenuOpen', (menu) => { this.openOverlay(menu); });
+        EventBus.subscribe('onMenuClose', (menu) => { this.closeOverlay(menu); });
 
         this.el.addEventListener('click', () => {
             this.closeOverlay(true, false);
@@ -24,7 +22,7 @@ module.exports = class Overlay {
         this.assignedEl = assignedEl;
         this.el.classList.add(this.openClass);
         this.state = 'open';
-        Global.EventBus.publish('onOverlayOpen', this.el);
+        EventBus.publish('onOverlayOpen', this.el);
     }
 
     closeOverlay(force, assignedEl) {
@@ -35,7 +33,7 @@ module.exports = class Overlay {
 
         this.el.classList.remove(this.openClass);
         this.state = 'closed';
-        Global.EventBus.publish('onOverlayClose', this.el);
+        EventBus.publish('onOverlayClose', this.el);
         this.assignedEl = undefined;
     }
 };

@@ -10,7 +10,6 @@ module.exports = {
         'airbnb-base',
     ],
     "rules": {
-
         //'airbnb-base' overrides
         "indent": ["error", 4], //set indentation to 4 spaces
         "no-underscore-dangle": ["error", {
@@ -44,4 +43,9 @@ module.exports = {
             }
         ]
     },
+    'globals': {
+        'EventBus': true,
+        'StateMachine': true,
+        'ComponentLoader': true
+    }
 }

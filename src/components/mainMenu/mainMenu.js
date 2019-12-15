@@ -1,5 +1,3 @@
-const Global = require('../../helpers/globals.js');
-
 module.exports = class MainMenu {
     constructor(el) {
         this.el = el;
@@ -9,15 +7,15 @@ module.exports = class MainMenu {
     }
 
     init() {
-        Global.EventBus.subscribe('onMenuToggle', () => {
+        EventBus.subscribe('onMenuToggle', () => {
             this.toggleMenu(true);
         });
 
-        Global.EventBus.subscribe('onOverlayClose', () => {
+        EventBus.subscribe('onOverlayClose', () => {
             this.toggleMenu(false);
         });
 
-        Global.EventBus.subscribe('onViewportChange', (viewport) => {
+        EventBus.subscribe('onViewportChange', (viewport) => {
             this.onViewportChange(viewport);
         });
     }
@@ -26,9 +24,9 @@ module.exports = class MainMenu {
         this.isExpanded = toggle;
         this.el.setAttribute('aria-expanded', toggle);
         if (toggle) {
-            Global.EventBus.publish('onMenuOpen', this.el);
+            EventBus.publish('onMenuOpen', this.el);
         } else {
-            Global.EventBus.publish('onMenuClose', this.el);
+            EventBus.publish('onMenuClose', this.el);
         }
     }
 
@@ -40,4 +38,4 @@ module.exports = class MainMenu {
             this.el.setAttribute('aria-expanded', this.isExpanded);
         }
     }
-}
+};

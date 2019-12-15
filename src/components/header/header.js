@@ -1,5 +1,3 @@
-const Global = require('../../helpers/globals.js');
-
 module.exports = class Header {
     constructor(el) {
         this.el = el;
@@ -14,6 +12,6 @@ module.exports = class Header {
     }
 
     toggleMenuButton() {
-        Global.EventBus.publish('onMenuToggle', this.el);
+        EventBus.publish('onMenuToggle', this.el);
     }
 };
