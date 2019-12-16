@@ -10,7 +10,7 @@
     z-index: var(--z-overlay);
     transition: opacity 0.2s ease-out;
 
-    &-open {
+    &[data-state="open"] {
         opacity: 0.5;
         pointer-events: all;
     }

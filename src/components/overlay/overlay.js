@@ -2,38 +2,43 @@ module.exports = class Overlay {
     constructor(el) {
         this.el = el;
         this.assignedEl = el;
-        this.openClass = 'overlay-open';
-        this.state = 'closed';
+
+        this.StateMachine = new StateMachine(this, {
+            closed: {
+                event: 'onOverlayClose',
+            },
+            open: {
+                event: 'onOverlayOpen',
+            },
+        });
+
         this.init();
     }
 
     init() {
-        EventBus.subscribe('onMenuOpen', (menu) => { this.openOverlay(menu); });
-        EventBus.subscribe('onMenuViewportLg', (menu) => { this.closeOverlay(menu); });
+        EventBus.subscribe('onMenuOpen', (menu) => {
+            this.assignElement(menu);
+            EventBus.publish('onOverlayOpen', this.el);
+        });
+
+        EventBus.subscribe('onMenuViewportLg', (menu) => {
+            if (this.assignedEl === menu) {
+                this.unassignElement();
+                EventBus.publish('onOverlayClose', this.el);
+            }
+        });
 
         this.el.addEventListener('click', () => {
-            this.closeOverlay(true, false);
+            this.unassignElement();
+            EventBus.publish('onOverlayClose', this.el);
         });
     }
 
-    openOverlay(assignedEl) {
-        if (this.state === 'opened') { return; }
-
-        this.assignedEl = assignedEl;
-        this.el.classList.add(this.openClass);
-        this.state = 'open';
-        EventBus.publish('onOverlayOpen', this.el);
+    assignElement(el) {
+        this.assignedEl = el;
     }
 
-    closeOverlay(force, assignedEl) {
-        if (
-            this.state === 'closed'
-            || (!force && this.assignedEl && this.assignedEl !== assignedEl)
-        ) { return; }
-
-        this.el.classList.remove(this.openClass);
-        this.state = 'closed';
-        EventBus.publish('onOverlayClose', this.el);
+    unassignElement() {
         this.assignedEl = undefined;
     }
 };
