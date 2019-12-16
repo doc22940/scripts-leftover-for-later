@@ -1,21 +1,51 @@
 .dev-post-teaser {
+    position: relative;
     padding-top: var(--spacing-y);
     padding-bottom: calc(2 * var(--spacing-y));
-    transition: opacity .2s ease-out;
-    opacity: 0;
+    
+    & > * {
+        opacity: 0;
+        transition: .2s ease-out;
+    }
 
     & + & {
         padding-top: calc(2 * var(--spacing-y));
-        border-top: 0.1em solid var(--font);
+        border-top: .1em solid var(--font);
         margin-top: 0;
     }
 
-    &[data-state="loaded"] {
-        opacity: 1;
+    .loader {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    &__title {
+        opacity: inherit;
     }
 
     &__reactions,
     &__comments {
         margin-right: var(--spacing-x);
+    }
+
+    &[data-state="loading"] {
+        .loader {
+            opacity: 1;
+        }
+    }
+
+    &[data-state="loaded"] {
+        > * {
+            opacity: 1;
+        }
+
+        .loader {
+            opacity: 0;
+        }
+    }
+
+    &[data-state="error"] {
+        display: none;
     }
 }

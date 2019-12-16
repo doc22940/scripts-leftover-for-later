@@ -8,7 +8,6 @@ module.exports = class devPostTeaser {
         this.postData = Object();
         this.api = 'https://dev.to/api/articles';
         this.id = this.el.dataset.devPostTeaserId ? this.el.dataset.devPostTeaserId : null;
-        this.postTitle = String();
         this.errorMessage = null;
 
         this.StateMachine = new StateMachine(this, {
@@ -19,9 +18,6 @@ module.exports = class devPostTeaser {
             loaded: {
                 event: 'devPostTeaserLoaded',
                 on: 'displayPost',
-            },
-            finished: {
-                event: 'devPostTeaserFinished',
             },
             error: {
                 event: 'devPostTeaserError',
@@ -45,7 +41,7 @@ module.exports = class devPostTeaser {
         fetch(`${this.api}/${this.id}`, {
             credentials: 'omit',
         })
-            .then((response) => response.text())
+            .then((response) => (response.status === 200 ? response.text() : false))
             .then((responseText) => this.parsePost(responseText))
             .catch((error) => {
                 this.errorMessage = error;
@@ -60,25 +56,21 @@ module.exports = class devPostTeaser {
             return;
         }
 
+        let postObj = Object();
+
         try {
-            const postObj = JSON.parse(postResponse);
-            if (postObj.url) {
-                this.postData.link = postObj.url;
-            }
-            if (postObj.title) {
-                this.postData.title = postObj.title;
-            }
-            if (postObj.positive_reactions_count) {
-                this.postData.reactions = postObj.positive_reactions_count;
-            }
-            if (postObj.comments_count) {
-                this.postData.comments = postObj.comments_count;
-            }
+            postObj = JSON.parse(postResponse);
         } catch (e) {
             this.errorMessage = 'Could\'t parse post object';
             EventBus.publish('devPostTeaserError', this.el);
             return;
         }
+
+        this.postData.link = postObj.url ? postObj.url : String();
+        this.postData.title = postObj.title ? postObj.title : String();
+        this.postData.reactions = postObj.positive_reactions_count
+            ? postObj.positive_reactions_count : 0;
+        this.postData.comments = postObj.comments_count ? postObj.comments_count : 0;
 
         EventBus.publish('devPostTeaserLoaded', this.el);
     }
@@ -91,6 +83,6 @@ module.exports = class devPostTeaser {
     }
 
     throwError() {
-        console.error('post failed', this.id, this.errorMessage);
+        console.error('Post failed:', this.id, this.errorMessage);
     }
 };
