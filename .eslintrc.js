@@ -46,6 +46,6 @@ module.exports = {
     'globals': {
         'EventBus': true,
         'StateMachine': true,
-        'ComponentLoader': true
+        'Components': true
     }
 }

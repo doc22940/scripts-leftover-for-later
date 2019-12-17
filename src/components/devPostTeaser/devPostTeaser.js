@@ -17,7 +17,7 @@ module.exports = class devPostTeaser {
             },
             loaded: {
                 event: 'devPostTeaserLoaded',
-                on: 'displayPost',
+                on: 'renderPost',
             },
             error: {
                 event: 'devPostTeaserError',
@@ -75,7 +75,7 @@ module.exports = class devPostTeaser {
         EventBus.publish('devPostTeaserLoaded', this.el);
     }
 
-    displayPost() {
+    renderPost() {
         this.linkEl.setAttribute('href', this.postData.link);
         this.titleEl.innerText = this.postData.title;
         this.reactionsEl.innerText = this.postData.reactions > 0 ? this.postData.reactions : 0;

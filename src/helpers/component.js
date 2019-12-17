@@ -11,13 +11,17 @@ export default class Component {
 
     init() {
         this.els.forEach((el) => {
-            try {
-                const componentName = el.dataset.component;
-                const ThisComponent = require(`../components/${componentName}/${componentName}.js`);
-                this.components.push(new ThisComponent(el));
-            } catch (e) {
-                console.error('Component couldn\'t be initialized', el, e);
-            }
+            this.registerComponent(el);
         });
+    }
+
+    registerComponent(el) {
+        try {
+            const componentName = el.dataset.component;
+            const ThisComponent = require(`../components/${componentName}/${componentName}.js`);
+            this.components.push(new ThisComponent(el));
+        } catch (error) {
+            console.error('Component couldn\'t be initialized', el, error);
+        }
     }
 }
