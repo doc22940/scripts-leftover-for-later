@@ -4,7 +4,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 
 module.exports = {
-    entry: "./src/components/index/index.js",
+    entry: {
+        index: "./src/components/index/index.js",
+    },
     output: {
         path: path.resolve(__dirname, "build"),
         filename: "bundle.js"
@@ -56,6 +58,7 @@ module.exports = {
         }),
         new ScriptExtHtmlWebpackPlugin({
             preload: /\.js$/,
+            defaultAttribute: 'defer',
         })
     ]
 };

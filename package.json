@@ -28,6 +28,7 @@
   "scripts": {
     "watch": "webpack --mode=development --watch",
     "start": "webpack --mode=development --watch & webpack-dev-server --open-page 'index.html'",
+    "prod": "webpack --mode=production --watch & webpack-dev-server --open-page 'index.html'",
     "build": "webpack --mode=production --config webpack.config.js",
     "lint": "eslint -c .eslintrc.js src",
     "lint-fix": "eslint -c .eslintrc.js src --fix"
