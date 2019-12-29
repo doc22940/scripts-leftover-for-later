@@ -7,10 +7,11 @@ export default class ComponentLoader {
         this.els = document.querySelectorAll('[data-component]');
         this.lastId = 0;
 
-        this.init();
+        this.updateDom();
     }
 
-    init() {
+    updateDom() {
+        // if el isnt in ComponentLoader.components[$].component.el
         this.els.forEach((el) => {
             this.registerComponent(el);
         });
@@ -20,12 +21,18 @@ export default class ComponentLoader {
         const id = this.lastId;
         this.lastId = this.lastId + 1;
 
+        // if webworker available
+        // register webworker
+        // send message with comp name
+        // attach event bus
+
         try {
             const componentName = el.dataset.component;
-            const ThisComponent = require(`../components/${componentName}/${componentName}.js`);
-            this.components.push({
-                id,
-                component: new ThisComponent(el),
+            import(`../components/${componentName}/${componentName}.js`).then(Module => {
+                this.components.push({
+                    id,
+                    component: new Module.default(el),
+                });
             });
         } catch (error) {
             console.error('Component couldn\'t be initialized', el, error);

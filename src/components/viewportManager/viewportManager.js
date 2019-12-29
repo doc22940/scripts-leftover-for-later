@@ -1,4 +1,4 @@
-module.exports = class ViewportManager {
+export default class ViewportManager {
     constructor(el) {
         this.el = el;
         this.init();
@@ -39,4 +39,4 @@ module.exports = class ViewportManager {
         this.el.setAttribute('data-breakpoint', this.breakpoint);
         EventBus.publish('onViewportChange', this.breakpoint);
     }
-};
+}

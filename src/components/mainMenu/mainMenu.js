@@ -1,4 +1,4 @@
-module.exports = class MainMenu {
+export default class MainMenu {
     constructor(el) {
         this.el = el;
 
@@ -48,4 +48,4 @@ module.exports = class MainMenu {
     disable() {
         this.el.removeAttribute('aria-expanded');
     }
-};
+}

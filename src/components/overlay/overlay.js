@@ -1,4 +1,4 @@
-module.exports = class Overlay {
+export default class Overlay {
     constructor(el) {
         this.el = el;
         this.assignedEl = el;
@@ -41,4 +41,4 @@ module.exports = class Overlay {
     unassignElement() {
         this.assignedEl = undefined;
     }
-};
+}

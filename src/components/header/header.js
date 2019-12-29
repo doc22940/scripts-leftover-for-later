@@ -1,4 +1,4 @@
-module.exports = class Header {
+export default class Header {
     constructor(el) {
         this.el = el;
         this.menuButton = this.el.querySelector('[data-header-el="menu-button"]');
@@ -14,4 +14,4 @@ module.exports = class Header {
     toggleMenuButton() {
         EventBus.publish('onMenuToggle', this.el);
     }
-};
+}

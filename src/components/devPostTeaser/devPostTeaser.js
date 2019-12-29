@@ -1,4 +1,4 @@
-module.exports = class devPostTeaser {
+export default class devPostTeaser {
     constructor(el) {
         this.el = el;
         this.titleEl = el.querySelector('[data-dev-post-teaser-el="title"]');
@@ -85,4 +85,4 @@ module.exports = class devPostTeaser {
     throwError() {
         console.error('Post failed:', this.id, this.errorMessage);
     }
-};
+}

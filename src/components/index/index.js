@@ -1,8 +1,7 @@
 import './index.scss';
 import ComponentLoader from '../../helpers/componentLoader';
 import StateMachine from '../../helpers/stateMachine';
-
-const EventBus = require('../../helpers/eventBus.js');
+import EventBus from '../../helpers/eventBus';
 
 window.EventBus = new EventBus();
 window.StateMachine = StateMachine;

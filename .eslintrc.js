@@ -4,7 +4,8 @@ module.exports = {
         "browser": true,
     },
     parserOptions: {
-        parser: "babel-eslint"
+        parser: "babel-eslint",
+        sourceType: 'module',
     },
     extends: [
         'airbnb-base',
@@ -41,6 +42,10 @@ module.exports = {
         'no-console': ['error', {
             'allow': ['warn', 'error']
             }
+        ],
+        'import/no-unresolved': [
+            2, 
+            { "caseSensitive": false }
         ]
     },
     'globals': {

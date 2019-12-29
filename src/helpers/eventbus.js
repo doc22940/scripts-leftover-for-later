@@ -6,7 +6,7 @@
  * { eventType: { id: callback } }
  */
 
-module.exports = class EventBus {
+export default class EventBus {
     constructor() {
         this.subscriptions = {};
         this.lastId = 0;
@@ -41,4 +41,4 @@ module.exports = class EventBus {
             (key) => this.subscriptions[eventType][key](arg)
         );
     }
-};
+}
