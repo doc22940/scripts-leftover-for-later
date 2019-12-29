@@ -3,16 +3,17 @@ module.exports = {
     "env": {
         "browser": true,
     },
+    parser: "babel-eslint",
     parserOptions: {
-        parser: "babel-eslint",
         sourceType: 'module',
+        allowImportExportEverywhere: true
     },
     extends: [
-        'airbnb-base',
+        'eslint:recommended',
+        //'airbnb-base'  // broken as of 14.0.0
     ],
     "rules": {
         //'airbnb-base' overrides
-        "indent": ["error", 4], //set indentation to 4 spaces
         "no-underscore-dangle": ["error", {
             "allowAfterThis": true
         }],
@@ -43,10 +44,6 @@ module.exports = {
             'allow': ['warn', 'error']
             }
         ],
-        'import/no-unresolved': [
-            2, 
-            { "caseSensitive": false }
-        ]
     },
     'globals': {
         'EventBus': true,
