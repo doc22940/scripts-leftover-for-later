@@ -1,3 +1,30 @@
+/**
+ * Usage:
+ * Create a new HTML and JS file with the same name in ../components/fooBar/fooBar.[html|js]
+ * Use following pattern:
+ *  
+ * html:
+ *    <div data-component="fooBar">
+ *        <span data-foo-bar-el="loremIpsum">
+ *            <!-- content here -->
+ *        </span>
+ *    </div>
+ *  
+ * js:
+ *    import Component from '../../helpers/component';
+ *    export default class FooBar extends Component {
+ *        beforeInit() {
+ *            // prepare component
+ *        }
+ *        init() {
+ *            // the component wrapper is this.el
+ *            // registered DOM elements are assigned like this.loremIpsum
+ *            // business logic here
+ *        }
+ *    }
+ *  
+ */
+
 export default class ComponentLoader {
     constructor() {
         this.components = [];
