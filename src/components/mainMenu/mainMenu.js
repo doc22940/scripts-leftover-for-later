@@ -1,7 +1,7 @@
-export default class MainMenu {
-    constructor(el) {
-        this.el = el;
+import Component from '../../helpers/component';
 
+export default class MainMenu extends Component {
+    beforeInit() {
         this.StateMachine = new StateMachine(this, {
             closed: {
                 event: 'onMenuClose',
@@ -17,8 +17,6 @@ export default class MainMenu {
                 off: 'closeMenu',
             },
         });
-
-        this.init();
     }
 
     init() {

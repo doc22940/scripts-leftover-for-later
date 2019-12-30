@@ -1,10 +1,7 @@
-export default class devPostTeaser {
-    constructor(el) {
-        this.el = el;
-        this.titleEl = el.querySelector('[data-dev-post-teaser-el="title"]');
-        this.linkEl = el.querySelector('[data-dev-post-teaser-el="link"]');
-        this.reactionsEl = el.querySelector('[data-dev-post-teaser-el="reactions"]');
-        this.commentsEl = el.querySelector('[data-dev-post-teaser-el="comments"]');
+import Component from '../../helpers/component';
+
+export default class DevPostTeaser extends Component {
+    beforeInit() {
         this.postData = Object();
         this.api = 'https://dev.to/api/articles';
         this.id = this.el.dataset.devPostTeaserId ? this.el.dataset.devPostTeaserId : null;
@@ -24,8 +21,6 @@ export default class devPostTeaser {
                 on: 'throwError',
             },
         });
-
-        this.init();
     }
 
     init() {
@@ -76,10 +71,10 @@ export default class devPostTeaser {
     }
 
     renderPost() {
-        this.linkEl.setAttribute('href', this.postData.link);
-        this.titleEl.innerText = this.postData.title;
-        this.reactionsEl.innerText = this.postData.reactions > 0 ? this.postData.reactions : 0;
-        this.commentsEl.innerText = this.postData.comments > 0 ? this.postData.comments : 0;
+        this.link.setAttribute('href', this.postData.link);
+        this.title.innerText = this.postData.title;
+        this.reactions.innerText = this.postData.reactions > 0 ? this.postData.reactions : 0;
+        this.comments.innerText = this.postData.comments > 0 ? this.postData.comments : 0;
     }
 
     throwError() {

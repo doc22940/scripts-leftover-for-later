@@ -1,10 +1,6 @@
-export default class Header {
-    constructor(el) {
-        this.el = el;
-        this.menuButton = this.el.querySelector('[data-header-el="menu-button"]');
-        this.init();
-    }
+import Component from '../../helpers/component';
 
+export default class Header extends Component {
     init() {
         this.menuButton.addEventListener('click', () => {
             this.toggleMenuButton();

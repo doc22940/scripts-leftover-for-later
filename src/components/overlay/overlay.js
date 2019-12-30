@@ -1,7 +1,8 @@
-export default class Overlay {
-    constructor(el) {
-        this.el = el;
-        this.assignedEl = el;
+import Component from '../../helpers/component';
+
+export default class Overlay extends Component {
+    beforeInit() {
+        this.assignedEl = undefined;
 
         this.StateMachine = new StateMachine(this, {
             closed: {
@@ -11,8 +12,6 @@ export default class Overlay {
                 event: 'onOverlayOpen',
             },
         });
-
-        this.init();
     }
 
     init() {

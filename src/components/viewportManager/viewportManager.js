@@ -1,9 +1,6 @@
-export default class ViewportManager {
-    constructor(el) {
-        this.el = el;
-        this.init();
-    }
+import Component from '../../helpers/component';
 
+export default class ViewportManager extends Component {
     init() {
         if (!window.getComputedStyle(this.el, ':before').getPropertyValue('content')) {
             console.error('breakpoint check failed');
