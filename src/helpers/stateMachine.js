@@ -1,3 +1,14 @@
+/**
+ * Usage:
+ *      this.StateMachine = new StateMachine(this, {
+ *          state1: {
+ *              event: 'onEvent',
+ *              on: 'enterCallbackFn',
+ *              off: 'exitCallbackFn',
+ *          }
+ *      });
+ */
+
 export default class StateMachine {
     constructor(component, states) {
         if (!component || !states) {

@@ -35,9 +35,11 @@ export default class ComponentLoader {
     }
 
     updateDom() {
-        // if el isnt in ComponentLoader.components[$].component.el
         this.els.forEach((el) => {
-            this.registerComponent(el);
+            if (!window.ComponentLoader 
+                || !window.ComponentLoader.components.filter(x => x.component.el === el)) {
+                this.registerComponent(el);
+            }
         });
     }
 
@@ -68,9 +70,11 @@ export default class ComponentLoader {
                 componentObj.component.destroy();
             }
 
-            componentObj.component.el.querySelectorAll('[data-component]').forEach((subcomponent) => {
-                this.removeComponent(subcomponent);
-            });
+            componentObj.component.el
+                .querySelectorAll('[data-component]')
+                .forEach((subcomponent) => {
+                    this.removeComponent(subcomponent);
+                });
 
             delete this.components[componentObj.id];
         }
