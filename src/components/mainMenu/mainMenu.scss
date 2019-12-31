@@ -21,8 +21,8 @@
         border-left: var(--line-width) solid var(--background);
         list-style: none;
         transform: translateX(var(--menuWidth));
-        color: var(--fontInverted);
-        background-color: var(--backgroundInverted);
+        color: var(--font-inverted);
+        background-color: var(--background-inverted);
         transition: transform 0.2s ease-out;
         z-index: var(--z-menu);
         pointer-events: all;
@@ -38,13 +38,13 @@
     }
 }
 
-@media screen and (min-width: $lgWidth) {
+@media screen and (min-width: $lg-width) {
     .main-menu {
         --menuWidth: var(--content-width);
 
         position: relative;
         height: auto;
-        background-color: var(--backgroundInverted);
+        background-color: var(--background-inverted);
 
         &__list {
             position: relative;

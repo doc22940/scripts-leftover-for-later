@@ -1,16 +1,21 @@
 @import '../../helpers/styles/utility';
 
 :root {
-    --background: #eee;
-    --backgroundInverted: #222;
-    --font: #222;
-    --fontInverted: #eee;
-    --accent: #f06;
-    --half: #888;
+    --contrast: 90%; // 100 = full, 50 = none, 0 = inverted
+    --background-opacity: 1;
+    --font-opacity: 1;
+    --accentHue: 330;
+
+    --background: hsla(0, 0%, var(--contrast), var(--background-opacity));
+    --background-inverted: hsla(0, 0%, calc(100% - var(--contrast)), var(--background-opacity));
+    --font: hsla(0, 0%, calc(100% - var(--contrast)), var(--font-opacity));
+    --font-inverted: hsla(0, 0%, var(--contrast), var(--font-opacity));
+    --accent: hsla(var(--accentHue), 100%, 50%, 1);
+    --bg-grey: hsla(0, 0%, calc(var(--contrast) * 0.8), 1);
 
     --spacing-x: 1rem;
     --spacing-y: 1rem;
-    --content-width:  #{$lgWidth};
+    --content-width:  #{$lg-width};
     --line-width: .2rem;
 
     --z-overlay: 100;
@@ -53,7 +58,7 @@ main {
     > * + * {
         margin-top: 0;
         padding: calc(2 * var(--spacing-y)) 0;
-        border-top: var(--line-width) dashed var(--half);
+        border-top: var(--line-width) dashed var(--bg-grey);
 
         &:last-child {
             padding-bottom: calc(2 * var(--spacing-y));

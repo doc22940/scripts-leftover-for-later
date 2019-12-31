@@ -2,13 +2,13 @@
     --currentViewport: 'sm'; 
 }
 
-@media screen and (min-width: $mdWidth) {
+@media screen and (min-width: $md-width) {
     :root {
         --currentViewport: 'md'; 
     }
 }
 
-@media screen and (min-width: $lgWidth) {
+@media screen and (min-width: $lg-width) {
     :root {
         --currentViewport: 'lg'; 
     }

@@ -3,8 +3,8 @@
     justify-content: space-between;
     width: 100%;
     padding: var(--spacing-y) var(--spacing-x);
-    background-color: var(--backgroundInverted);
-    color: var(--fontInverted);
+    background-color: var(--background-inverted);
+    color: var(--font-inverted);
 
     &__title {
         margin: 0;
@@ -33,7 +33,7 @@
     }
 }
 
-@media screen and (min-width: $lgWidth) {
+@media screen and (min-width: $lg-width) {
     .header {
         display: block;
         padding: var(--spacing-y) 0 0;
