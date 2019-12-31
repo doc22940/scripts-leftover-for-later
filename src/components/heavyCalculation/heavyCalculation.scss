@@ -1,0 +1,21 @@
+.heavy-calculation {
+    position: relative;
+
+    &__counter {
+        margin: 0;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    &[data-state="finished"] {
+        > * {
+            opacity: 1;
+            pointer-events: all;
+        } 
+
+        .loader {
+            opacity: 0;
+            pointer-events: none;
+        }
+    }
+}

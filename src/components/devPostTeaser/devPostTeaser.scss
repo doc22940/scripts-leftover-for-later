@@ -8,12 +8,6 @@
         transition: opacity .2s ease-out;
     }
 
-    & + & {
-        padding-top: calc(2 * var(--spacing-y));
-        border-top: .1em solid var(--font);
-        margin-top: 0;
-    }
-
     .loader {
         position: absolute;
         top: 0;

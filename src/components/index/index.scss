@@ -21,6 +21,7 @@ $lgWidth: 1025px;
 @import '../viewportManager/viewportManager.scss';
 @import '../loader/loader.scss';
 @import '../devPostTeaser/devPostTeaser.scss';
+@import '../heavyCalculation/heavyCalculation.scss';
 
 * {
     box-sizing: border-box;
@@ -45,7 +46,13 @@ a {
 main {
     padding: 0 var(--spacing-x) var(--spacing-y);
 
-    * + * {
-        margin-top: var(--spacing-y);
+    > * + * {
+        margin-top: 0;
+        padding-top: calc(2 * var(--spacing-y));
+        border-top: .1em solid var(--font);
+
+        &:last-child {
+            padding-bottom: calc(2 * var(--spacing-y));
+        }
     }
 }

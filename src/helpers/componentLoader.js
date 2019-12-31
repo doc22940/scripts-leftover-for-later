@@ -45,11 +45,6 @@ export default class ComponentLoader {
         const id = this.lastId;
         this.lastId = this.lastId + 1;
 
-        // if webworker available
-        // register webworker
-        // send message with comp name
-        // attach event bus
-
         try {
             const componentName = el.dataset.component;
             import(`../components/${componentName}/${componentName}.js`).then(Module => {
