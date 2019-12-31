@@ -1,5 +1,5 @@
-$mdWidth: 680px;
-$lgWidth: 1025px;
+$mdWidth: 42.5rem; // 680px
+$lgWidth: 64.0625rem; // 1025px
 
 :root {
     --background: #eee;
@@ -8,8 +8,8 @@ $lgWidth: 1025px;
     --fontInverted: #eee;
     --accent: #f06;
 
-    --spacing-x: 1em;
-    --spacing-y: 1em;
+    --spacing-x: 1rem;
+    --spacing-y: 1rem;
 
     --z-overlay: 100;
     --z-menu: 110;
@@ -44,6 +44,8 @@ a {
 }
 
 main {
+    max-width: 64rem;
+    margin: auto;
     padding: 0 var(--spacing-x) var(--spacing-y);
 
     > * + * {

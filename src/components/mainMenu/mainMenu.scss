@@ -42,14 +42,17 @@
     .main-menu {
         position: relative;
         height: auto;
+        background-color: var(--backgroundInverted);
 
         &__list {
             position: relative;
             display: flex;
             width: 100%;
-            max-width: none;
+            max-width: 64rem;
+            margin: auto;
             border: none;
             transform: translateX(0);
+            background-color: none;
             transition: none;
         }
 
