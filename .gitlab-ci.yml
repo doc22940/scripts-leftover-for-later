@@ -17,6 +17,6 @@ pages:
         - echo "deploying"
     artifacts:
         paths:
-        - build/.
+        - public/.
     only:
     - master
