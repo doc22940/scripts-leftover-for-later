@@ -1,5 +1,5 @@
 .main-menu {
-    --menuWidth: 320px;
+    --menuWidth: 20rem; // 320px
 
     position: absolute;
     top: 0;
@@ -18,7 +18,7 @@
         height: 100%;
         margin: 0;
         padding: var(--spacing-x) var(--spacing-y);
-        border-left: 5px solid var(--background);
+        border-left: .2rem solid var(--background);
         list-style: none;
         transform: translateX(var(--menuWidth));
         color: var(--fontInverted);
@@ -40,6 +40,8 @@
 
 @media screen and (min-width: $lgWidth) {
     .main-menu {
+        --menuWidth: 64rem;
+
         position: relative;
         height: auto;
         background-color: var(--backgroundInverted);
@@ -48,7 +50,6 @@
             position: relative;
             display: flex;
             width: 100%;
-            max-width: 64rem;
             margin: auto;
             border: none;
             transform: translateX(0);
