@@ -39,7 +39,7 @@
         padding: var(--spacing-y) 0 0;
 
         &__title {
-            max-width: 64rem;
+            max-width: var(--content-width);
             margin: auto;
             padding: var(--spacing-x) var(--spacing-y);
         }

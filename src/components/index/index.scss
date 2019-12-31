@@ -1,5 +1,4 @@
-$mdWidth: 42.5rem; // 680px
-$lgWidth: 64.0625rem; // 1025px
+@import '../../helpers/styles/utility';
 
 :root {
     --background: #eee;
@@ -7,21 +6,16 @@ $lgWidth: 64.0625rem; // 1025px
     --font: #222;
     --fontInverted: #eee;
     --accent: #f06;
+    --half: #888;
 
     --spacing-x: 1rem;
     --spacing-y: 1rem;
+    --content-width:  #{$lgWidth};
+    --line-width: .2rem;
 
     --z-overlay: 100;
     --z-menu: 110;
 }
-
-@import '../overlay/overlay.scss';
-@import '../header/header.scss';
-@import '../mainMenu/mainMenu.scss';
-@import '../viewportManager/viewportManager.scss';
-@import '../loader/loader.scss';
-@import '../devPostTeaser/devPostTeaser.scss';
-@import '../heavyCalculation/heavyCalculation.scss';
 
 * {
     box-sizing: border-box;
@@ -43,15 +37,23 @@ a {
     }
 }
 
+h1:first-of-type {
+    margin-top: 0;
+}
+
 main {
-    max-width: 64rem;
+    max-width: var(--content-width);
     margin: auto;
     padding: 0 var(--spacing-x) var(--spacing-y);
 
+    > * {
+        padding: calc(2 * var(--spacing-y)) 0;
+    }
+
     > * + * {
         margin-top: 0;
-        padding-top: calc(2 * var(--spacing-y));
-        border-top: .2rem solid var(--font);
+        padding: calc(2 * var(--spacing-y)) 0;
+        border-top: var(--line-width) dashed var(--half);
 
         &:last-child {
             padding-bottom: calc(2 * var(--spacing-y));

@@ -1,7 +1,5 @@
 .dev-post-teaser {
     position: relative;
-    padding-top: var(--spacing-y);
-    padding-bottom: calc(2 * var(--spacing-y));
     
     & > * {
         opacity: 0;

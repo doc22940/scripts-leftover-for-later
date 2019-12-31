@@ -1,0 +1,10 @@
+$mdWidth: 42.5rem; // 680px
+$lgWidth: 64.0625rem; // 1025px
+
+@import '../overlay/overlay.scss';
+@import '../header/header.scss';
+@import '../mainMenu/mainMenu.scss';
+@import '../viewportManager/viewportManager.scss';
+@import '../loader/loader.scss';
+@import '../devPostTeaser/devPostTeaser.scss';
+@import '../heavyCalculation/heavyCalculation.scss';

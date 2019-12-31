@@ -18,7 +18,7 @@
         height: 100%;
         margin: 0;
         padding: var(--spacing-x) var(--spacing-y);
-        border-left: .2rem solid var(--background);
+        border-left: var(--line-width) solid var(--background);
         list-style: none;
         transform: translateX(var(--menuWidth));
         color: var(--fontInverted);
@@ -40,7 +40,7 @@
 
 @media screen and (min-width: $lgWidth) {
     .main-menu {
-        --menuWidth: 64rem;
+        --menuWidth: var(--content-width);
 
         position: relative;
         height: auto;
