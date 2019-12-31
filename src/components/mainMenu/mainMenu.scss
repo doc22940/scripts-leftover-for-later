@@ -51,6 +51,7 @@
             display: flex;
             width: 100%;
             margin: auto;
+            padding-bottom: calc(2 * var(--spacing-y));
             border: none;
             transform: translateX(0);
             background-color: none;

@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
-    padding: var(--spacing-x) var(--spacing-y);
+    padding: var(--spacing-y) var(--spacing-x);
     background-color: var(--backgroundInverted);
     color: var(--fontInverted);
 
@@ -36,11 +36,12 @@
 @media screen and (min-width: $lgWidth) {
     .header {
         display: block;
+        padding: var(--spacing-y) 0 0;
 
         &__title {
             max-width: 64rem;
             margin: auto;
-            padding: var(--spacing-x);
+            padding: var(--spacing-x) var(--spacing-y);
         }
         
         &__menu-button {
