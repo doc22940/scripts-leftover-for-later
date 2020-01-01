@@ -16,7 +16,7 @@ export default class DevPostTeaser extends Component {
 
     init() {
         this.colorSchemeToggle.addEventListener('input', () => this.onToggle())
-        this.getSchemeFromViewportManager();
+        this.applyInitialState();
     }
 
     onToggle() {
@@ -26,21 +26,22 @@ export default class DevPostTeaser extends Component {
         );
     }
 
-    getSchemeFromViewportManager() {
-        const {colorScheme} = ComponentLoader
-            .components
-            .filter(
-                comp => comp.component.componentName === 'viewportManager'
-                )[0]
-            .component;
-        this.colorSchemeToggle.checked = (colorScheme === 'dark');
+    applyInitialState() {
+        if (window.localStorage.colorScheme) {
+            this.colorSchemeToggle.checked = window.localStorage.colorScheme === 'dark';
+        } else {
+            this.colorSchemeToggle.checked = window.matchMedia('(prefers-color-scheme:dark)').matches;
+        }
+        this.onToggle();
     }
 
     enableDarkMode() {
         document.body.setAttribute('data-color-scheme', 'dark');
+        window.localStorage.colorScheme = 'dark';
     }
 
     enableLightMode() {
         document.body.setAttribute('data-color-scheme', 'light');
+        window.localStorage.colorScheme = 'light';
     }
 }

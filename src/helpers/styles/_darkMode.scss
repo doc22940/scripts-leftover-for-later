@@ -1,7 +1,7 @@
 @mixin darkMode {
     --contrast: 75%;
     --background: hsla(0, 0%, 0%, var(--background-opacity));
-    --background-inverted: hsla(0, 0%, 5%, var(--background-opacity));
+    --background-inverted: hsla(0, 0%, 10%, var(--background-opacity));
     --font: hsla(0, 0%, var(--contrast), var(--font-opacity));
     --font-inverted: hsla(0, 0%, var(--contrast), var(--font-opacity));
 }
