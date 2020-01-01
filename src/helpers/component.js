@@ -1,7 +1,7 @@
 export default class Component {
     constructor(el) {
         this.el = el;
-        this.componentName = this.constructor.name;
+        this.componentName = this.el.dataset.component;
         this.assignComponentElements();
 
         if (this.beforeInit) { this.beforeInit(); }
