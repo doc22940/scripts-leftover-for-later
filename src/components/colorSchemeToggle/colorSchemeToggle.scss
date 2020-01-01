@@ -1,0 +1,31 @@
+.color-scheme-toggle {
+    display: flex;
+    align-items: center;
+
+    &::before {
+        content: "☀️";
+    }
+
+    &::after {
+        content: "🌙";
+    }
+
+    &__input {
+        -webkit-appearance: none;
+        width: 2rem;
+        height: 1rem;
+        margin: 0 1ch;
+        border-radius: .5rem;
+        background: radial-gradient(circle, var(--accent) 39.9%, var((--font-inverted)) 40%);
+        background-position: -.5rem 0;
+        transition: background-position .2s ease-out;
+
+        &:checked {
+            background-position: .5rem 0;
+        }
+    }
+
+    &__label {
+        @include visuallyHidden;
+    }
+}
