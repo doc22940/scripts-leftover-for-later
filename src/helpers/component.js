@@ -6,6 +6,7 @@ export default class Component {
 
         if (this.beforeInit) { this.beforeInit(); }
         if (this.init) { this.init(); }
+        this.publishReady();
     }
 
     assignComponentElements() {
@@ -22,5 +23,14 @@ export default class Component {
             const elementName = componentEl.dataset[`${componentSelector}El`];
             this[elementName] = componentEl;
         })
+    }
+
+    publishReady() {
+        const eventName = `on${
+            this.componentName.charAt(0).toUpperCase() + 
+            this.componentName.slice(1)
+        }Ready`
+
+        EventBus.publish(eventName, this.el);
     }
 }

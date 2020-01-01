@@ -1,5 +1,6 @@
 :root {
     --currentViewport: 'sm'; 
+    --currentColorScheme: 'light';
 }
 
 @media screen and (min-width: $md-width) {
@@ -14,10 +15,16 @@
     }
 }
 
+@media (prefers-color-scheme: dark) {
+    :root {
+        --currentColorScheme: 'dark';
+    }
+}
+
 [data-component="viewportManager"] {
     display: none;
 
     &::before {
-        content: var(--currentViewport);
+        content: 'viewport-' var(--currentViewport) '_scheme-' var(--currentColorScheme);
     }
 }

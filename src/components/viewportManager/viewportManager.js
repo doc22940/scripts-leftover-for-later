@@ -7,25 +7,26 @@ export default class ViewportManager extends Component {
             return;
         }
 
-        this.breakpoint = this.getBreakpoint();
+        this.breakpoint = this.getPropFromCss('viewport');
         this.oldBreakpoint = this.breakpoint;
+        this.colorScheme = this.getPropFromCss('scheme');
 
         this.publishEvent();
         window.addEventListener('resize', () => { this.onViewportResize(); }, false);
     }
 
-    getBreakpoint() {
+    getPropFromCss(propName) {
         return window
             .getComputedStyle(this.el, ':before')
             .getPropertyValue('content')
-            .split('"')
-            .filter(Boolean)
-            .join('"');
+            .split('"')[1]
+            .split("_").filter(prop => prop.indexOf(propName) >= 0)[0]
+            .split("-")[1];
     }
 
     onViewportResize() {
         this.oldBreakpoint = this.breakpoint;
-        this.breakpoint = this.getBreakpoint();
+        this.breakpoint = this.getPropFromCss('viewport');
 
         if (this.oldBreakpoint !== this.breakpoint) {
             this.publishEvent();
@@ -34,6 +35,7 @@ export default class ViewportManager extends Component {
 
     publishEvent() {
         this.el.setAttribute('data-breakpoint', this.breakpoint);
+        this.el.setAttribute('data-color-scheme', this.colorScheme);
         EventBus.publish('onViewportChange', this.breakpoint);
     }
 }

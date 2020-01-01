@@ -34,6 +34,16 @@ body {
     color: var(--font);
 }
 
+body[data-color-scheme="dark"] {
+    @include darkMode();
+}
+
+@media (prefers-color-scheme: dark) {
+    body:not([data-color-scheme="light"]) {
+        @include darkMode();
+    }
+}
+
 a {
     color: inherit;
 

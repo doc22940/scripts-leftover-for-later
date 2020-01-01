@@ -1,6 +1,7 @@
 $md-width: 42.5rem; // 680px
 $lg-width: 64.0625rem; // 1025px
 
+@import './darkMode';
 @import '../overlay/overlay.scss';
 @import '../header/header.scss';
 @import '../mainMenu/mainMenu.scss';
