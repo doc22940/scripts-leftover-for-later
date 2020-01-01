@@ -12,6 +12,8 @@
     &__list {
         position: absolute;
         top: 0;
+        display: flex;
+        flex-direction: column;
         right: 0;
         width: 90vw;
         max-width: var(--menuWidth);
@@ -32,7 +34,18 @@
         }
     }
 
-    &__item {
+    &__additional-list {
+        display: flex;
+        justify-content: flex-end;
+        flex-direction: column;
+        flex-basis: 100%;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    &__item,
+    &__additional-item {
         font-size: 1.5em;
         margin: var(--spacing-y) 0;
     }
@@ -48,7 +61,7 @@
 
         &__list {
             position: relative;
-            display: flex;
+            flex-direction: row;
             width: 100%;
             margin: auto;
             padding-bottom: calc(2 * var(--spacing-y));
@@ -58,7 +71,14 @@
             transition: none;
         }
 
-        &__item {
+        &__additional-list {
+            flex-direction: row;
+        }
+
+        &__item,
+        &__additional-item {
+            display: flex;
+            align-items: center;
             font-size: 1em;
             margin: 0;
             
