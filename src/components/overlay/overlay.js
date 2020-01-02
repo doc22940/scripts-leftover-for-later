@@ -38,11 +38,11 @@ export default class Overlay extends Component {
     }
 
     publishOpenEvents() {
-        EventBus.publish('onDisableScroll', this.el);
+        EventBus.publish('onDisableScroll');
     }
 
     publishCloseEvents() {
-        EventBus.publish('onEnableScroll', this.el);
+        EventBus.publish('onEnableScroll');
     }
 
     assignElement(el) {

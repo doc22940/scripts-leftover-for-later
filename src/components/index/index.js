@@ -8,8 +8,16 @@ export default class index extends Component {
                     event: 'onDisableScroll',
                 },
                 enabled: {
-                    event: 'onEnabledScroll',
+                    event: 'onEnableScroll',
                     initial: true,
+                },
+            },
+            colorScheme: {
+                light: {
+                    event: 'onLightColorScheme',
+                },
+                dark: {
+                    event: 'onDarkColorScheme',
                 },
             },
         });

@@ -37,7 +37,7 @@ class State {
             return;
         }
 
-        if (this.isThisInstance(eventEl)) {
+        if (!eventEl || this.isThisInstance(eventEl)) {
             this.triggerStateTransitionMethods(this.states[newState]);
             this.updateState(newState);
         }

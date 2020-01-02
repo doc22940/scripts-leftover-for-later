@@ -38,12 +38,12 @@ export default class DevPostTeaser extends Component {
     }
 
     enableDarkMode() {
-        document.body.setAttribute('data-color-scheme', 'dark');
+        EventBus.publish('onDarkColorScheme');
         window.localStorage.colorScheme = 'dark';
     }
 
     enableLightMode() {
-        document.body.setAttribute('data-color-scheme', 'light');
+        EventBus.publish('onLightColorScheme');
         window.localStorage.colorScheme = 'light';
     }
 }

@@ -31,14 +31,18 @@ body {
     padding: 0;
     background-color: var(--background);
     color: var(--font);
+
+    &[data-state-scrolling="disabled"] {
+        overflow: hidden;
+    }
 }
 
-body[data-color-scheme="dark"] {
+body[data-state-color-scheme="dark"] {
     @include darkMode();
 }
 
 @media (prefers-color-scheme: dark) {
-    body:not([data-color-scheme="light"]) {
+    body:not([data-state-color-scheme="light"]) {
         @include darkMode();
     }
 }
