@@ -1,11 +1,13 @@
 /**
  * Usage:
  *      this.StateMachine = new StateMachine(this, {
- *          state1: {
- *              event: 'onEvent',
- *              initial: true,
- *              on: 'enterCallbackFn',
- *              off: 'exitCallbackFn',
+ *          stateName: {
+ *              stateValue: {
+ *                  event: 'onEvent',
+ *                  initial: true,
+ *                  on: 'enterCallbackFn',
+ *                  off: 'exitCallbackFn',
+ *              }
  *          }
  *      });
  */
