@@ -1,8 +1,14 @@
-import './index.scss';
-import ComponentLoader from '../../helpers/componentLoader';
-import StateMachine from '../../helpers/stateMachine';
-import EventBus from '../../helpers/eventBus';
+import Component from '../../helpers/component';
 
-window.EventBus = new EventBus();
-window.StateMachine = StateMachine;
-window.ComponentLoader = new ComponentLoader();
+export default class index extends Component {
+    init() {
+        this.StateMachine = new StateMachine(this, {
+            disableScroll: {
+                event: 'onDisableScroll',
+            },
+            enableScroll: {
+                event: 'onEnableScroll',
+            },
+        });
+    }
+}

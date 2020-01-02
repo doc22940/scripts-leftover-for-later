@@ -6,7 +6,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: {
-        index: './src/components/index/index.js',
+        index: './src/entry/script.js',
     },
     output: {
         path: path.resolve(__dirname, 'public'),
@@ -54,7 +54,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             hash: true,
             title: 'Some Basic Components',
-            template: './src/components/index/index.html',
+            template: './src/entry/document.html',
             filename: './index.html', // relative to root of the application
         }),
         new MiniCssExtractPlugin({

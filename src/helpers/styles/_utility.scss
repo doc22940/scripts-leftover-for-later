@@ -3,11 +3,12 @@ $lg-width: 64.0625rem; // 1025px
 
 @import './darkMode';
 @import './visuallyHidden';
-@import '../overlay/overlay';
-@import '../header/header';
-@import '../mainMenu/mainMenu';
-@import '../colorSchemeToggle/colorSchemeToggle';
-@import '../viewportManager/viewportManager';
-@import '../loader/loader';
-@import '../devPostTeaser/devPostTeaser';
-@import '../heavyCalculation/heavyCalculation';
+@import '../../components/index/index';
+@import '../../components/overlay/overlay';
+@import '../../components/header/header';
+@import '../../components/mainMenu/mainMenu';
+@import '../../components/colorSchemeToggle/colorSchemeToggle';
+@import '../../components/viewportManager/viewportManager';
+@import '../../components/loader/loader';
+@import '../../components/devPostTeaser/devPostTeaser';
+@import '../../components/heavyCalculation/heavyCalculation';
