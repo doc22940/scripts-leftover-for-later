@@ -8,17 +8,19 @@ export default class DevPostTeaser extends Component {
         this.errorMessage = null;
 
         this.StateMachine = new StateMachine(this, {
-            loading: {
-                event: 'devPostTeaserLoading',
-                on: 'loadPost',
-            },
-            loaded: {
-                event: 'devPostTeaserLoaded',
-                on: 'renderPost',
-            },
-            error: {
-                event: 'devPostTeaserError',
-                on: 'throwError',
+            fetch: {
+                loading: {
+                    event: 'devPostTeaserLoading',
+                    on: 'loadPost',
+                },
+                loaded: {
+                    event: 'devPostTeaserLoaded',
+                    on: 'renderPost',
+                },
+                error: {
+                    event: 'devPostTeaserError',
+                    on: 'throwError',
+                },
             },
         });
     }

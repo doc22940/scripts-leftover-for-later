@@ -3,18 +3,20 @@ import Component from '../../helpers/component';
 export default class MainMenu extends Component {
     beforeInit() {
         this.StateMachine = new StateMachine(this, {
-            closed: {
-                event: 'onMenuClose',
-                on: 'closeMenu',
-            },
-            open: {
-                event: 'onMenuOpen',
-                on: 'openMenu',
-            },
-            full: {
-                event: 'onMenuViewportLg',
-                on: 'disable',
-                off: 'closeMenu',
+            toggle: {
+                closed: {
+                    event: 'onMenuClose',
+                    on: 'closeMenu',
+                },
+                open: {
+                    event: 'onMenuOpen',
+                    on: 'openMenu',
+                },
+                fullscreen: {
+                    event: 'onMenuViewportLg',
+                    on: 'disable',
+                    off: 'closeMenu',
+                },
             },
         });
     }

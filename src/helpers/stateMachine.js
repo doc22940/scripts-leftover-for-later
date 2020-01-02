@@ -3,24 +3,22 @@
  *      this.StateMachine = new StateMachine(this, {
  *          state1: {
  *              event: 'onEvent',
+ *              initial: true,
  *              on: 'enterCallbackFn',
  *              off: 'exitCallbackFn',
  *          }
  *      });
  */
 
-export default class StateMachine {
-    constructor(component, states) {
-        if (!component || !states) {
-            console.error('State Machine called incorrectly');
-            return;
-        }
-
+class State {
+    constructor(name, component, state) {
+        this.name = name;
+        this.states = state;
         this.component = component;
-        this.states = states;
-        this.currentState = String();
+        this.currentState = undefined;
 
         this.addEventMethods();
+        this.initStates();
     }
 
     addEventMethods() {
@@ -49,11 +47,43 @@ export default class StateMachine {
 
     triggerStateTransitionMethods(state) {
         if (state.on) this.component[state.on]();
-        if (this.currentState.off) this.component[this.currentState.off]();
+        if (this.currentState && this.currentState.off) this.component[this.currentState.off]();
     }
 
     updateState(newState) {
-        this.component.el.dataset.state = newState;
+        const dataName = this.name.charAt(0).toUpperCase() + this.name.slice(1);
+        this.component.el.dataset[`state${dataName}`] = newState;
         this.currentState = newState;
+    }
+
+    initStates() {
+        this.changeState()
+
+        Object.keys(this.states).forEach((index) => {
+            if (this.states[index].initial) {
+                this.changeState(index, this.component.el);
+            }        
+        });
+    }
+}
+
+export default class StateMachine {
+    constructor(component, states) {
+        if (!component || !states) {
+            console.error('State Machine called incorrectly');
+            return;
+        }
+
+        this.component = component;
+        this.statesObj = states;
+        this.states = {};
+
+        this.registerStates();
+    }
+
+    registerStates() {
+        for (const name in this.statesObj) {
+            this.states[name] = new State(name, this.component, this.statesObj[name]);
+        }
     }
 }

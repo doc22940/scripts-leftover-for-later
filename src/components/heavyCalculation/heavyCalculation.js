@@ -9,12 +9,14 @@ export default class HeavyCalculation extends Component {
         this.counter = new HeavyCalculationWorker();
 
         this.StateMachine = new StateMachine(this, {
-            progress: {
-                event: 'heavyCaluclationProgress',
-            },
-            finished: {
-                event: 'heavyCaluclationFinished',
-                on: 'updateNumber',
+            calculation: {
+                progress: {
+                    event: 'heavyCaluclationProgress',
+                },
+                finished: {
+                    event: 'heavyCaluclationFinished',
+                    on: 'updateNumber',
+                },
             },
         });
     }

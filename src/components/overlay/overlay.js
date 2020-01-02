@@ -5,11 +5,15 @@ export default class Overlay extends Component {
         this.assignedEl = undefined;
 
         this.StateMachine = new StateMachine(this, {
-            closed: {
-                event: 'onOverlayClose',
-            },
-            open: {
-                event: 'onOverlayOpen',
+            toggle: {
+                closed: {
+                    event: 'onOverlayClose',
+                    on: 'publishCloseEvents',
+                },
+                open: {
+                    event: 'onOverlayOpen',
+                    on: 'publishOpenEvents',
+                },
             },
         });
     }
@@ -31,6 +35,14 @@ export default class Overlay extends Component {
             this.unassignElement();
             EventBus.publish('onOverlayClose', this.el);
         });
+    }
+
+    publishOpenEvents() {
+        EventBus.publish('onDisableScroll', this.el);
+    }
+
+    publishCloseEvents() {
+        EventBus.publish('onEnableScroll', this.el);
     }
 
     assignElement(el) {

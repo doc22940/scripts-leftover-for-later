@@ -21,13 +21,13 @@
         margin-right: var(--spacing-x);
     }
 
-    &[data-state="loading"] {
+    &[data-state-fetch="loading"] {
         .loader {
             opacity: 1;
         }
     }
 
-    &[data-state="loaded"] {
+    &[data-state-fetch="loaded"] {
         > * {
             opacity: 1;
         }
@@ -37,7 +37,7 @@
         }
     }
 
-    &[data-state="error"] {
+    &[data-state-fetch="error"] {
         display: none;
     }
 }

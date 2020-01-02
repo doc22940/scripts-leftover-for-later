@@ -3,13 +3,15 @@ import Component from '../../helpers/component';
 export default class DevPostTeaser extends Component {
     beforeInit() {
         this.StateMachine = new StateMachine(this, {
-            dark: {
-                event: 'onColorSchemeDark',
-                on: 'enableDarkMode',
-            },
-            light: {
-                event: 'onColorSchemeLight',
-                on: 'enableLightMode',
+            colorScheme: {
+                dark: {
+                    event: 'onColorSchemeDark',
+                    on: 'enableDarkMode',
+                },
+                light: {
+                    event: 'onColorSchemeLight',
+                    on: 'enableLightMode',
+                },
             },
         });
     }
