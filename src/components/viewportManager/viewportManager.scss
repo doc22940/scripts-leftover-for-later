@@ -25,6 +25,6 @@
     display: none;
 
     &::before {
-        content: 'viewport-' var(--currentViewport) '_scheme-' var(--currentColorScheme);
+        content: 'viewport-'var(--currentViewport)'_scheme-'var(--currentColorScheme);
     }
 }

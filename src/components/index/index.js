@@ -13,11 +13,11 @@ export default class index extends Component {
                 },
             },
             colorScheme: {
-                light: {
-                    event: 'onLightColorScheme',
-                },
                 dark: {
-                    event: 'onDarkColorScheme',
+                    event: 'onColorSchemeDark',
+                },
+                light: {
+                    event: 'onColorSchemeLight',
                 },
             },
         });

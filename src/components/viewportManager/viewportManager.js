@@ -11,8 +11,6 @@ export default class ViewportManager extends Component {
             this.breakpoint = this.getPropFromCss('viewport');
             this.oldBreakpoint = this.breakpoint;
             this.colorScheme = this.getPropFromCss('scheme');
-
-        this.publishEvent();
         })
 
         window.addEventListener('resize', () => { this.onViewportResize(); }, false);
@@ -22,7 +20,7 @@ export default class ViewportManager extends Component {
         return window
             .getComputedStyle(this.el, ':before')
             .getPropertyValue('content')
-            .split('"')[1]
+            .replace(/"| /g, "")
             .split("_").filter(prop => prop.indexOf(propName) >= 0)[0]
             .split("-")[1];
     }
