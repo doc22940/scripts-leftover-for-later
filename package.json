@@ -26,14 +26,16 @@
     "sass-loader": "^8.0.0",
     "script-ext-html-webpack-plugin": "^2.1.4",
     "style-loader": "^1.0.0",
+    "webpack-bundle-analyzer": "^3.6.0",
     "webpack-cli": "^3.3.10",
     "worker-loader": "^2.0.0"
   },
   "scripts": {
-    "watch": "webpack --mode=development --watch",
-    "start": "webpack --mode=development --watch & webpack-dev-server --open-page 'index.html'",
-    "prod": "webpack --mode=production --watch & webpack-dev-server --open-page 'index.html'",
-    "build": "webpack --mode=production --config webpack.config.js",
+    "watch": "webpack --env.mode=development --watch",
+    "start": "webpack --env.mode=development --watch & webpack-dev-server --env.mode=development --open-page 'index.html'",
+    "prod": "webpack --env.mode=production --watch & webpack-dev-server --env.mode=production --open-page 'index.html'",
+    "build": "webpack --env.mode=production --config webpack.config.js",
+    "stats": "webpack --env.mode=production --env.stats  --mode=production --config webpack.config.js",
     "lint": "eslint -c .eslintrc.js src",
     "lint-fix": "eslint -c .eslintrc.js src --fix"
   }
