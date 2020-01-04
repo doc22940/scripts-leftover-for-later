@@ -74,7 +74,7 @@ module.exports = env => {
             ]),
             new BundleAnalyzerPlugin({
                 analyzerMode: env.stats ? 'static' : 'disabled',
-                openAnalyzer: true,
+                openAnalyzer: env.stats,
                 reportFilename: 'report/index.html',
             }),
         ],

@@ -9,7 +9,7 @@
     --font: hsla(0, 0%, calc(100% - var(--contrast)), var(--font-opacity));
     --font-inverted: hsla(0, 0%, var(--contrast), var(--font-opacity));
     --accent: hsla(var(--accentHue), 100%, 50%, 1);
-    --bg-grey: hsla(0, 0%, calc(var(--contrast) * 0.8), 1);
+    --bg-grey: hsla(0, 0%, calc(50% + ((50% - var(--contrast) * 0.3))), var(--font-opacity));
 
     --spacing-x: 1rem;
     --spacing-y: 1rem;
@@ -17,6 +17,7 @@
     --line-width: .2rem;
 
     --z-overlay: 100;
+    --z-header: 90;
     --z-menu: 110;
     --z-below: -1;
 }
@@ -49,6 +50,7 @@ body[data-state-color-scheme="dark"] {
 
 a {
     color: inherit;
+    text-decoration-thickness: 0.11em;
 
     &:hover {
         text-decoration-color: var(--accent);
@@ -59,7 +61,7 @@ h1:first-of-type {
     margin-top: 0;
 }
 
-main {
+main { 
     max-width: var(--content-width);
     margin: auto;
     padding: 0 var(--spacing-x) var(--spacing-y);

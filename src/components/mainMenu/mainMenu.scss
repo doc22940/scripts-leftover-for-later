@@ -23,6 +23,7 @@
         padding: var(--spacing-x) var(--spacing-y);
         border-left: var(--line-width) solid var(--background);
         list-style: none;
+        overflow: auto;
         transform: translateX(var(--menuWidth));
         color: var(--font-inverted);
         background-color: var(--background-inverted);
@@ -62,12 +63,15 @@
         height: auto;
         background-color: var(--background-inverted);
 
+        position: sticky;
+        top: 0;
+
         &__list {
             position: relative;
             flex-direction: row;
             width: 100%;
             margin: auto;
-            padding-bottom: calc(2 * var(--spacing-y));
+            padding: var(--spacing-y) var(--spacing-x);
             border: none;
             transform: translateX(0);
             background-color: none;
