@@ -23,10 +23,6 @@ module.exports = env => {
                     exclude: /(node_modules)/,
                     use: {
                         loader: 'babel-loader',
-                        options: {
-                            presets: ['@babel/preset-env'],
-                            plugins: ['dynamic-import-node-babel-7'],
-                        },
                     },
                 }, {
                     test: /\.worker\.js$/,
