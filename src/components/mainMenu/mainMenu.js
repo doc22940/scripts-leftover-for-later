@@ -22,25 +22,32 @@ export default class MainMenu extends Component {
     }
 
     init() {
-        EventBus.subscribe('onOverlayClose', () => { EventBus.publish('onMenuClose', this.el); });
-        EventBus.subscribe('onMenuToggle', () => { EventBus.publish('onMenuOpen', this.el); });
-        EventBus.subscribe('onViewportChange', (viewport) => {
-            if (viewport === 'lg') {
-                EventBus.publish('onMenuViewportLg', this.el);
-            } else {
-                EventBus.publish('onMenuClose', this.el);
-            }
-        });
+        this.boundOnMenuClose = () => { EventBus.publish('onMenuClose', this.el); };
+        EventBus.subscribe('onOverlayClose', this.boundOnMenuClose);
+
+        this.boundOnMenuOpen = () => { EventBus.publish('onMenuOpen', this.el); };
+        EventBus.subscribe('onMenuToggle', this.boundOnMenuOpen);
+
+        this.boundHandleViewportChanges = viewport => { this.handleViewportChanges(viewport); };
+        EventBus.subscribe('onViewportChange', this.boundHandleViewportChanges);
+    }
+
+    handleViewportChanges(viewport) {
+        if (viewport === 'lg') {
+            EventBus.publish('onMenuViewportLg', this.el);
+        } else {
+            EventBus.publish('onMenuClose', this.el);
+        }
     }
 
     openMenu() {
-        if (this.StateMachine.currentState !== 'full') {
+        if (this.StateMachine.currentState !== 'fullscreen') {
             this.el.setAttribute('aria-expanded', true);
         }
     }
 
     closeMenu() {
-        if (this.StateMachine.currentState !== 'full') {
+        if (this.StateMachine.currentState !== 'fullscreen') {
             this.el.setAttribute('aria-expanded', false);
         }
     }

@@ -15,7 +15,7 @@ beforeEach(() => {
 });
 
 it('Component is called', () => {
-    const header = new Component();
+    new Component();
     expect(Component).toHaveBeenCalledTimes(1);
 });
 
