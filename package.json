@@ -40,7 +40,7 @@
     "stats": "webpack --env.mode=production --env.stats --config webpack.config.js",
     "lint": "eslint -c .eslintrc.js src",
     "lint-fix": "eslint -c .eslintrc.js src --fix",
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "jest": {
     "moduleFileExtensions": [
