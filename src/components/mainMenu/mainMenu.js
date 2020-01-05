@@ -6,6 +6,7 @@ export default class MainMenu extends Component {
             toggle: {
                 closed: {
                     event: 'onMenuClose',
+                    initial: true,
                     on: 'closeMenu',
                 },
                 open: {
@@ -47,7 +48,7 @@ export default class MainMenu extends Component {
     }
 
     closeMenu() {
-        if (this.StateMachine.currentState !== 'fullscreen') {
+        if (!this.StateMachine || this.StateMachine.currentState !== 'fullscreen') {
             this.el.setAttribute('aria-expanded', false);
         }
     }
