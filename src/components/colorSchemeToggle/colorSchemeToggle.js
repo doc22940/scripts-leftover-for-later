@@ -15,7 +15,7 @@ export default class ColorSchemeToggle extends Component {
     }
 
     init() {
-        this.colorSchemeToggle.addEventListener('change', () => this.onToggle())
+        this.colorSchemeToggle.addEventListener('change', () => this.onToggle());
         this.applyInitialState();
     }
 
