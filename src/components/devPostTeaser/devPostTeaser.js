@@ -11,6 +11,7 @@ export default class DevPostTeaser extends Component {
             fetch: {
                 loading: {
                     event: 'devPostTeaserLoading',
+                    initial: true,
                     on: 'loadPost',
                 },
                 loaded: {

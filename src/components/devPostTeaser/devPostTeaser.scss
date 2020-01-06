@@ -12,7 +12,7 @@
         left: 0;
     }
 
-    &__title {
+    &__link {
         opacity: inherit;
     }
 
@@ -21,6 +21,7 @@
         margin-right: var(--spacing-x);
     }
 
+    &:not([data-state-fetch]),
     &[data-state-fetch="loading"] {
         .loader {
             opacity: 1;
