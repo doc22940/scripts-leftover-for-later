@@ -8,6 +8,7 @@ export default class Overlay extends Component {
             toggle: {
                 closed: {
                     event: 'onOverlayClose',
+                    initial: true,
                     on: 'publishCloseEvents',
                 },
                 open: {
@@ -19,22 +20,25 @@ export default class Overlay extends Component {
     }
 
     init() {
-        EventBus.subscribe('onMenuOpen', (menu) => {
+        this.boundOnMenuOpen = (menu) => {
             this.assignElement(menu);
             EventBus.publish('onOverlayOpen', this.el);
-        });
+        }
+        EventBus.subscribe('onMenuOpen', this.boundOnMenuOpen);
 
-        EventBus.subscribe('onMenuViewportLg', (menu) => {
+        this.boundOnMenuViewportLg = (menu) => {
             if (this.assignedEl === menu) {
                 this.unassignElement();
                 EventBus.publish('onOverlayClose', this.el);
             }
-        });
+        }
+        EventBus.subscribe('onMenuViewportLg', this.boundOnMenuViewportLg);
 
-        this.el.addEventListener('click', () => {
+        this.boundOnClick = () => {
             this.unassignElement();
             EventBus.publish('onOverlayClose', this.el);
-        });
+        }
+        this.el.addEventListener('click', this.boundOnClick);
     }
 
     publishOpenEvents() {
