@@ -29,6 +29,7 @@ it('Component is initialized', () => {
     component.boundOnMenuOpen = jest.fn();
     component.boundOnMenuViewportLg = jest.fn();
     component.boundOnClick = jest.fn();
+    component.assignElement = jest.fn();
     component.unassignElement = jest.fn();
 
     component.init();
@@ -37,11 +38,17 @@ it('Component is initialized', () => {
     expect(EventBus.subscribe).toHaveBeenCalledWith('onMenuViewportLg', component.boundOnMenuViewportLg);
     expect(component.el.addEventListener).toHaveBeenCalledWith('click', component.boundOnClick)
 
-    component.assignedMenu = {};
+    component.boundOnMenuOpen();
+    expect(component.assignElement).toHaveBeenCalledTimes(1);
+    expect(EventBus.publish).toHaveBeenCalledWith('onOverlayOpen', component.el);
+
     component.boundOnMenuViewportLg();
     expect(component.unassignElement).toHaveBeenCalledTimes(1);
     expect(EventBus.publish).toHaveBeenCalledWith('onOverlayClose', component.el);
 
+    component.boundOnClick();
+    expect(component.unassignElement).toHaveBeenCalledTimes(2);
+    expect(EventBus.publish).toHaveBeenCalledWith('onOverlayClose', component.el);
 });
 
 it('disables scrolling on open', () => {
@@ -54,4 +61,19 @@ it('enables scrolling on close', () => {
     const component = new Component();
     component.publishCloseEvents();
     expect(EventBus.publish).toHaveBeenCalledWith('onEnableScroll');
+});
+
+it('assignes elements', () => {
+    const component = new Component();
+    const element = {};
+    component.assignedEl = undefined;
+    component.assignElement(element);
+    expect(component.assignedEl).toBe(element);
+});
+
+it('unassignes elements', () => {
+    const component = new Component();
+    component.assignedEl = {};
+    component.unassignElement();
+    expect(component.assignedEl).toBe(undefined);
 });
