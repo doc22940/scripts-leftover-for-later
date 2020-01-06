@@ -27,10 +27,14 @@
         transform: translateX(var(--menuWidth));
         color: var(--font-inverted);
         background-color: var(--background-inverted);
-        transition: transform 0.2s ease-out;
         pointer-events: all;
 
+        [aria-expanded="false"] > & {
+            transition: transform 0.2s ease-out;
+        }
+        
         [aria-expanded="true"] > & {
+            transition: transform 0.2s ease-out;
             transform: translateX(0);
         }
     }
