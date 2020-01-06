@@ -13,7 +13,7 @@
  * js:
  *    import Component from '../../helpers/component';
  *    export default class FooBar extends Component {
- *        beforeInit() {
+ *        prepare() {
  *            // prepare component
  *        }
  *        init() {

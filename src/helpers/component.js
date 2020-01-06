@@ -4,7 +4,7 @@ export default class Component {
         this.componentName = this.el.dataset.component;
         this.assignComponentElements();
 
-        if (this.beforeInit) { this.beforeInit(); }
+        if (this.prepare) { this.prepare(); }
         if (this.init) { this.init(); }
         this.publishReady();
     }

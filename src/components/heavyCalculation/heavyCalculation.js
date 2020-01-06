@@ -2,7 +2,7 @@ import Component from '../../helpers/component';
 import HeavyCalculationWorker from './heavyCalculation.worker';
 
 export default class HeavyCalculation extends Component {
-    beforeInit() {
+    prepare() {
         const parsedCurrent = parseInt(this.calculatedNumber.innerText);
         this.current = !isNaN(parsedCurrent) ? parsedCurrent : 0;
         this.finish = 999999999;

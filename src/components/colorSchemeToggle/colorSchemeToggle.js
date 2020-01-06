@@ -1,7 +1,7 @@
 import Component from '../../helpers/component';
 
 export default class ColorSchemeToggle extends Component {
-    beforeInit() {
+    prepare() {
         this.StateMachine = new StateMachine(this, {
             colorScheme: {
                 dark: {

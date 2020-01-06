@@ -1,7 +1,7 @@
 import Component from '../../helpers/component';
 
 export default class DevPostTeaser extends Component {
-    beforeInit() {
+    prepare() {
         this.postData = Object();
         this.api = 'https://dev.to/api/articles';
         this.id = this.el.dataset.devPostTeaserId ? this.el.dataset.devPostTeaserId : null;

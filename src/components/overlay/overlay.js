@@ -1,7 +1,7 @@
 import Component from '../../helpers/component';
 
 export default class Overlay extends Component {
-    beforeInit() {
+    prepare() {
         this.assignedEl = undefined;
 
         this.StateMachine = new StateMachine(this, {
