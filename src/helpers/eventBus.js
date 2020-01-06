@@ -12,33 +12,51 @@ export default class EventBus {
         this.lastId = 0;
     }
 
-    subscribe(eventType, callback) {
-        const id = this.lastId + 1;
-        this.lastId = id;
-
-        if (!this.subscriptions[eventType]) {
-            this.subscriptions[eventType] = {};
-        }
-
-        this.subscriptions[eventType][id] = callback;
-
-        return {
-            unsubscribe: () => {
-                delete this.subscriptions[eventType][id];
-                if (Object.keys(this.subscriptions[eventType]).length === 0) {
-                    delete this.subscriptions[eventType];
-                }
-            },
-        };
-    }
-
-    publish(eventType, arg) {
-        if (!this.subscriptions[eventType]) {
+    subscribe(eventName, callback) {
+        if (!eventName || !callback) {
             return;
         }
 
-        Object.keys(this.subscriptions[eventType]).forEach(
-            (key) => this.subscriptions[eventType][key](arg)
+        const id = this.lastId + 1;
+        this.lastId = id;
+
+        if (!this.subscriptions[eventName]) {
+            this.subscriptions[eventName] = {};
+        }
+
+        this.subscriptions[eventName][id] = callback;
+
+        const boundUnsubscribe = () => {
+            this.unsubscribe(eventName, id);
+        }
+
+        return {
+            unsubscribe: boundUnsubscribe,
+        };
+    }
+
+    unsubscribe(eventName, id) {
+        if (!eventName || !id) {
+            return;
+        }
+
+        delete this.subscriptions[eventName][id];
+        if (Object.keys(this.subscriptions[eventName]).length === 0) {
+            delete this.subscriptions[eventName];
+        }
+    }
+
+    publish(eventName, arg) {
+        if (!eventName) {
+            return;
+        }
+
+        if (!this.subscriptions[eventName]) {
+            return;
+        }
+
+        Object.keys(this.subscriptions[eventName]).forEach(
+            (key) => this.subscriptions[eventName][key](arg)
         );
     }
 }
