@@ -2,8 +2,10 @@ export default class Component {
     constructor(el) {
         this.el = el;
         this.componentName = this.el.dataset.component;
-        this.assignComponentElements();
+    }
 
+    startComponent() {
+        this.assignComponentElements();
         if (this.prepare) { this.prepare(); }
         if (this.init) { this.init(); }
         this.publishReady();

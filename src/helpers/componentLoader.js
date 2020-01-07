@@ -50,9 +50,11 @@ export default class ComponentLoader {
         try {
             const componentName = el.dataset.component;
             import(`../components/${componentName}/${componentName}.js`).then(Module => {
+                const initializedComponent = new Module.default(el);
+                initializedComponent.startComponent();
                 this.components.push({
                     id,
-                    component: new Module.default(el),
+                    component: initializedComponent,
                 });
             });
         } catch (error) {
