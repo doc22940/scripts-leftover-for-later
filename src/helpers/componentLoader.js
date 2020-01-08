@@ -44,22 +44,30 @@ export default class ComponentLoader {
     }
 
     registerComponent(el) {
-        const id = this.lastId;
-        this.lastId = this.lastId + 1;
-
         try {
             const componentName = el.dataset.component;
-            import(`../components/${componentName}/${componentName}.js`).then(Module => {
-                const initializedComponent = new Module.default(el);
-                initializedComponent.startComponent();
-                this.components.push({
-                    id,
-                    component: initializedComponent,
-                });
+            this.fetchComponent(componentName).then(Module => {
+                this.initializeComponent(Module, el);
             });
         } catch (error) {
             console.error('Component couldn\'t be initialized', el, error);
         }
+    }
+
+    fetchComponent(componentName) {
+        return import(`../components/${componentName}/${componentName}.js`);
+    }
+
+    initializeComponent(Module, el) {
+        const id = this.lastId;
+        const initializedComponent = new Module.default(el);
+
+        this.lastId = this.lastId + 1;
+        initializedComponent.startComponent();
+        this.components.push({
+            id,
+            component: initializedComponent,
+        });
     }
 
     removeComponent(el) {
