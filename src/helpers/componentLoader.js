@@ -37,7 +37,9 @@ export default class ComponentLoader {
     updateDom() {
         this.els.forEach((el) => {
             if (!window.ComponentLoader 
-                || window.ComponentLoader.components.filter(x => x.component.el === el).length === 0) {
+                || window.ComponentLoader.components.filter(
+                    x => x.component.el === el).length === 0
+            ) {
                 this.registerComponent(el);
             }
         });
