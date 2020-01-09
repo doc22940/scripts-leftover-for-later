@@ -31,13 +31,13 @@ export default class ComponentLoader {
         this.els = document.querySelectorAll('[data-component]');
         this.lastId = 0;
 
-        this.updateDom();
+        //this.updateDom();
     }
 
     updateDom() {
         this.els.forEach((el) => {
             if (!window.ComponentLoader 
-                || !window.ComponentLoader.components.filter(x => x.component.el === el)) {
+                || window.ComponentLoader.components.filter(x => x.component.el === el).length === 0) {
                 this.registerComponent(el);
             }
         });

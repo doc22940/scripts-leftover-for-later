@@ -6,3 +6,4 @@ import EventBus from '../helpers/eventBus';
 window.EventBus = new EventBus();
 window.StateMachine = StateMachine;
 window.ComponentLoader = new ComponentLoader();
+window.ComponentLoader.updateDom();
