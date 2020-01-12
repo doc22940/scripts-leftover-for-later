@@ -6,14 +6,17 @@ import StateMachine from '../helpers/stateMachine';
 import EventBus from '../helpers/eventBus';
 
 window.Modules = {
-    colorSchemeToggle: () => import(/* webpackChunkName: 'colorSchemeToggle.js' */ '../components/colorSchemeToggle/colorSchemeToggle.js'),
+    /* add site functionality: */
+    colorSchemeToggle: () => import(/* webpackMode: 'eager' */ '../components/colorSchemeToggle/colorSchemeToggle.js'),
+    header: () => import(/* webpackMode: 'eager' */ '../components/header/header.js'),
+    index: () => import(/* webpackMode: 'eager' */ '../components/index/index.js'),
+    mainMenu: () => import(/* webpackMode: 'eager' */ '../components/mainMenu/mainMenu.js'),
+    overlay: () => import(/* webpackMode: 'eager' */ '../components/overlay/overlay.js'),
+    viewportManager: () => import(/* webpackMode: 'eager' */ '../components/viewportManager/viewportManager.js'),
+
+    /* add module functionality: */
     devPostTeaser: () => import(/* webpackChunkName: 'devPostTeaser.js' */ '../components/devPostTeaser/devPostTeaser.js'),
-    header: () => import(/* webpackChunkName: 'header.js' */ '../components/header/header.js'),
     heavyCalculation: () => import(/* webpackChunkName: 'heavyCalculation.js' */ '../components/heavyCalculation/heavyCalculation.js'),
-    index: () => import(/* webpackChunkName: 'index.js' */ '../components/index/index.js'),
-    mainMenu: () => import(/* webpackChunkName: 'mainMenu.js' */ '../components/mainMenu/mainMenu.js'),
-    overlay: () => import(/* webpackChunkName: 'overlay.js' */ '../components/overlay/overlay.js'),
-    viewportManager: () => import(/* webpackChunkName: 'viewportManager.js' */ '../components/viewportManager/viewportManager.js'),
 }
 
 window.EventBus = new EventBus();

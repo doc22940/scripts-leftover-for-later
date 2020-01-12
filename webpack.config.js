@@ -58,6 +58,7 @@ module.exports = env => {
                 title: 'Some Basic Components',
                 template: './src/entry/document.html',
                 filename: './index.html', // relative to root of the application
+                defaultAttribute: 'defer',
             }),
             new MiniCssExtractPlugin({
                 filename: 'styles.css',
