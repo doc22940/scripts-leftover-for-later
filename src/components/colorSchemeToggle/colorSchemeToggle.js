@@ -29,9 +29,9 @@ export default class ColorSchemeToggle extends Component {
     applyInitialState() {
         if (window.localStorage.colorScheme) {
             this.colorSchemeToggle.checked = window.localStorage.colorScheme === 'dark';
+            this.onToggle();
         } else {
             this.colorSchemeToggle.checked = window.matchMedia('(prefers-color-scheme:dark)').matches;
         }
-        this.onToggle();
     }
 }
