@@ -30,8 +30,6 @@ export default class ComponentLoader {
         this.components = [];
         this.els = document.querySelectorAll('[data-component]');
         this.lastId = 0;
-
-        //this.updateDom();
     }
 
     updateDom() {

@@ -3,6 +3,7 @@ module.exports = {
         '@babel/preset-env',
     ],
     plugins: [
-        "dynamic-import-webpack",
+        "@babel/plugin-syntax-dynamic-import"
     ],
+    comments: true
 }

@@ -14,7 +14,7 @@ module.exports = env => {
         },
         output: {
             path: path.resolve(__dirname, 'public'),
-            filename: `bundle.[chunkhash].js`,
+            filename: 'bundle.[chunkhash].js',
             chunkFilename: '[name].[chunkhash].js',
         },
         module: {
