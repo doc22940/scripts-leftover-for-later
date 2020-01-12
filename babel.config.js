@@ -3,6 +3,6 @@ module.exports = {
         '@babel/preset-env',
     ],
     plugins: [
-        'dynamic-import-node-babel-7',
+        "dynamic-import-webpack",
     ],
 }

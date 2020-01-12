@@ -1,4 +1,5 @@
 const path = require('path');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
@@ -10,11 +11,11 @@ module.exports = env => {
         mode: env.mode,
         entry: {
             index: './src/entry/script.js',
-    
         },
         output: {
             path: path.resolve(__dirname, 'public'),
-            filename: 'bundle.js',
+            filename: `bundle.[chunkhash].js`,
+            chunkFilename: '[name].[chunkhash].js',
         },
         module: {
             rules: [
@@ -51,6 +52,7 @@ module.exports = env => {
             ],
         },
         plugins: [
+            new CleanWebpackPlugin(),
             new HtmlWebpackPlugin({
                 hash: true,
                 title: 'Some Basic Components',
