@@ -1,0 +1,16 @@
+@mixin link {
+    color: inherit;
+    text-decoration-thickness: 0.11em;
+
+    &:hover {
+        text-decoration-color: var(--accent);
+    }
+}
+
+@mixin inlineLink {
+    color: var(--accent);
+
+    &:hover {
+        text-decoration-color: var(--font);
+    }
+}

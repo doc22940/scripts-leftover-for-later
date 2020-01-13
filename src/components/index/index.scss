@@ -48,19 +48,6 @@ body[data-state-color-scheme="dark"] {
     }
 }
 
-a {
-    color: inherit;
-    text-decoration-thickness: 0.11em;
-
-    &:hover {
-        text-decoration-color: var(--accent);
-    }
-}
-
-h1:first-of-type {
-    margin-top: 0;
-}
-
 main { 
     max-width: var(--content-width);
     margin: auto;
@@ -79,4 +66,24 @@ main {
             padding-bottom: calc(2 * var(--spacing-y));
         }
     }
+}
+
+a {
+    @include link();
+
+    p & {
+        @include inlineLink();
+    }
+}
+
+h1 {
+    font-size: 2em;
+
+    &:first-of-type {
+        margin-top: 0;
+    }
+}
+
+::selection {
+    background-color: var(--accent);
 }
