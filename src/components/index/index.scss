@@ -71,7 +71,8 @@ main {
 a {
     @include link();
 
-    p & {
+    p &,
+    cite & {
         @include inlineLink();
     }
 }
@@ -82,6 +83,36 @@ h1 {
     &:first-of-type {
         margin-top: 0;
     }
+}
+
+blockquote {
+    position: relative;
+    margin-block-start: var(--spacing-y);
+    margin-block-end: var(--spacing-y);
+    margin-inline-start: var(--spacing-x);
+    margin-inline-end: var(--spacing-x);
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: calc(var(--spacing-x) * -1);
+        width: 1px;
+        height: 100%;
+        border-left: var(--line-width) dashed var(--bg-grey);
+    }
+
+    > footer {
+        margin-top: calc(var(--spacing-y) / 2);
+    }
+}
+
+hr {
+    border-top: var(--line-width) dashed var(--bg-grey);
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+    margin: calc(2 * var(--spacing-y)) 0;
 }
 
 ::selection {
