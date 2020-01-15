@@ -36,7 +36,6 @@ export default class MainMenu extends Component {
     handleViewportChanges(viewport) {
         if (viewport === 'lg') {
             EventBus.publish('onMenuViewportLg', this.el);
-        } else {
             EventBus.publish('onMenuClose', this.el);
         }
     }

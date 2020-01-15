@@ -15,6 +15,9 @@ window.EventBus = {
     subscribe: jest.fn()
 }
 window.StateMachine = jest.fn();
+window.Modules = {
+    index: jest.fn().mockResolvedValue(IndexComponent)
+}
 
 const loremElement = document.querySelectorAll('[data-component="index"]')[0]; 
 const ipsumElement = document.querySelectorAll('[data-component="index"]')[1]; 
@@ -36,15 +39,23 @@ it('ComponentLoader is constructed', () => {
     });
 });
 
-it('finds and fetches components', () => {
-    const loader = new ComponentLoader();
-    loader.fetchComponent('index').then((fetchResult) => expect(fetchResult).toMatchObject(IndexComponent));
-})
-
 it('registers and boots components', () => {
     const loader = new ComponentLoader();
     loader.registerComponent(loremElement);
-    return loader.fetchComponent("index").then(() => expect(IndexComponent).toHaveBeenCalledTimes(1));
+    expect(window.Modules.index).toHaveBeenCalledTimes(1);
+
+    return window.Modules.index().then(
+        Module => expect(Module).toBe(IndexComponent)
+    );
+});
+
+it('initializes components', () => {
+    const loader = new ComponentLoader();
+    expect(loader.lastId).toBe(0);
+    loader.initializeComponent(IndexComponent, loremElement);
+    expect(loader.lastId).toBe(1);
+
+    expect(IndexComponent).toHaveBeenCalledTimes(1);
 });
 
 it('removes (nested) components', () => {

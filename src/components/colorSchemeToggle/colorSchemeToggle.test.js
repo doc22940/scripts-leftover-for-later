@@ -73,7 +73,10 @@ it('Applies initial state for dark mode', () => {
 
     component.applyInitialState();
     expect(component.colorSchemeToggle.checked).toBe(true);
-    expect(component.onToggle).toHaveBeenCalledTimes(1);
+
+    if (window.localStorage.colorScheme) {
+        expect(component.onToggle).toHaveBeenCalledTimes(1);
+    }
 });
 
 it('toggles dark mode', () => {

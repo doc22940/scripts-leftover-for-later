@@ -35,15 +35,20 @@ it('Component is initialized', () => {
     expect(EventBus.subscribe).toHaveBeenCalledWith('onViewportChange', component.boundHandleViewportChanges);
 });
 
-it('handles viewport changes', () =>{
+it('closes menu and and publishes event on lg viewport change', () =>{
     const viewports = ['sm', 'md', 'lg'];
     const component = new Component();
     component.el = document.querySelector('[data-component="mainMenu"]');
 
     viewports.forEach(viewport => {
         component.handleViewportChanges(viewport);
-        const publishEvent = viewport === 'lg' ? 'onMenuViewportLg' : 'onMenuClose'
-        expect(EventBus.publish).toHaveBeenCalledWith(publishEvent, component.el);
+        
+        if (viewport === "lg") {
+            expect(EventBus.publish).toHaveBeenCalledWith('onMenuViewportLg', component.el);
+            expect(EventBus.publish).toHaveBeenCalledWith('onMenuClose', component.el);
+        } else {
+            expect(EventBus.publish).not.toHaveBeenCalled();
+        }
     });
 });
 
