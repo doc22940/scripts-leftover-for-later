@@ -8,9 +8,13 @@ window.EventBus = {
     publish: jest.fn(),
     subscribe: jest.fn()
 }
-const StateMachine = jest.fn().mockImplementation(() => {
-    return {currentState: 'closed'};
-});
+const StateMachineMock = {
+    states: {
+        toggle: {
+            currentState: 'closed'
+        }
+    }
+}
 
 beforeEach(() => {
     // Clear all instances and calls to constructor and all methods:
@@ -39,6 +43,7 @@ it('closes menu and and publishes event on lg viewport change', () =>{
     const viewports = ['sm', 'md', 'lg'];
     const component = new Component();
     component.el = document.querySelector('[data-component="mainMenu"]');
+    component.StateMachine = StateMachineMock;
 
     viewports.forEach(viewport => {
         component.handleViewportChanges(viewport);
@@ -56,7 +61,7 @@ it('can open the menu drawer', () => {
     const states = ['open', 'closed'];
     const component = new Component();
     component.el = document.querySelector('[data-component="mainMenu"]');
-    component.StateMachine = StateMachine;
+    component.StateMachine = StateMachineMock;
 
     states.forEach(state => {
         component.StateMachine.currentState = state;
@@ -69,7 +74,7 @@ it('can close the menu drawer', () => {
     const states = ['open', 'closed'];
     const component = new Component();
     component.el = document.querySelector('[data-component="mainMenu"]');
-    component.StateMachine = StateMachine;
+    component.StateMachine = StateMachineMock;
 
     states.forEach(state => {
         component.StateMachine.currentState = state;

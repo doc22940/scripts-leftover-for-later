@@ -43,13 +43,13 @@ export default class MainMenu extends Component {
     }
 
     openMenu() {
-        if (this.StateMachine.currentState !== 'fullscreen') {
+        if (this.StateMachine.states.toggle.currentState !== 'fullscreen') {
             this.el.setAttribute('aria-expanded', true);
         }
     }
 
     closeMenu() {
-        if (!this.StateMachine || this.StateMachine.currentState !== 'fullscreen') {
+        if (!this.StateMachine || this.StateMachine.states.toggle.currentState !== 'fullscreen') {
             this.el.setAttribute('aria-expanded', false);
         }
     }
