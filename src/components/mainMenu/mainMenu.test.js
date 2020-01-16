@@ -52,7 +52,8 @@ it('closes menu and and publishes event on lg viewport change', () =>{
             expect(EventBus.publish).toHaveBeenCalledWith('onMenuViewportLg', component.el);
             expect(EventBus.publish).toHaveBeenCalledWith('onMenuClose', component.el);
         } else {
-            expect(EventBus.publish).not.toHaveBeenCalled();
+            expect(EventBus.publish).toHaveBeenCalled();
+            expect(EventBus.publish).not.toHaveBeenCalledWith('fullscreen');
         }
     });
 });

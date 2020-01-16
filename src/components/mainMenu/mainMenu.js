@@ -38,7 +38,9 @@ export default class MainMenu extends Component {
             EventBus.publish('onMenuClose', this.el);
             EventBus.publish('onMenuViewportLg', this.el);
         } else {
-            this.el.setAttribute('aria-expanded', (this.StateMachine.states.toggle.currentState === 'open'));
+            const isOpen = this.StateMachine.states.toggle.currentState === 'open';
+            this.el.setAttribute('aria-expanded', isOpen);
+            EventBus.publish(isOpen ? 'onMenuOpen' : 'onMenuClose', this.el);
         }
     }
 
