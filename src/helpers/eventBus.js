@@ -4,56 +4,52 @@
  */
 
 export default class EventBus {
-  constructor() {
-    this.subscriptions = {};
-    this.lastId = 0;
-  }
-
-  subscribe(eventName, callback) {
-    if (!eventName || !callback) {
-      return;
+    constructor() {
+        this.subscriptions = {};
+        this.lastId = 0;
     }
 
-    const id = this.lastId + 1;
-    this.lastId = id;
+    subscribe(eventName, callback) {
+        if (!eventName || !callback) {
+            return;
+        }
 
-    if (!this.subscriptions[eventName]) {
-      this.subscriptions[eventName] = {};
+        const id = this.lastId + 1;
+        this.lastId = id;
+
+        if (!this.subscriptions[eventName]) {
+            this.subscriptions[eventName] = {};
+        }
+
+        this.subscriptions[eventName][id] = callback;
+
+        // pass id to subscriptio call to allow modules to unsubscribe again
+        // eslint-disable-next-line consistent-return
+        return id;
     }
 
-    this.subscriptions[eventName][id] = callback;
+    unsubscribe(eventName, id) {
+        if (!eventName || !id) {
+            return;
+        }
 
-    const boundUnsubscribe = () => {
-      this.unsubscribe(eventName, id);
-    };
-
-    return {
-      unsubscribe: boundUnsubscribe,
-    };
-  }
-
-  unsubscribe(eventName, id) {
-    if (!eventName || !id) {
-      return;
+        delete this.subscriptions[eventName][id];
+        if (Object.keys(this.subscriptions[eventName]).length === 0) {
+            delete this.subscriptions[eventName];
+        }
     }
 
-    delete this.subscriptions[eventName][id];
-    if (Object.keys(this.subscriptions[eventName]).length === 0) {
-      delete this.subscriptions[eventName];
-    }
-  }
+    publish(eventName, arg) {
+        if (!eventName) {
+            return;
+        }
 
-  publish(eventName, arg) {
-    if (!eventName) {
-      return;
-    }
+        if (!this.subscriptions[eventName]) {
+            return;
+        }
 
-    if (!this.subscriptions[eventName]) {
-      return;
+        Object.keys(this.subscriptions[eventName]).forEach(
+            (key) => this.subscriptions[eventName][key](arg)
+        );
     }
-
-    Object.keys(this.subscriptions[eventName]).forEach(
-      (key) => this.subscriptions[eventName][key](arg)
-    );
-  }
 }

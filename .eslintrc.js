@@ -13,6 +13,7 @@ module.exports = {
     ],
     "rules": {
         //'airbnb-base' overrides
+        "indent": ["error", 4],
         "no-underscore-dangle": ["error", {
             "allowAfterThis": true
         }],
