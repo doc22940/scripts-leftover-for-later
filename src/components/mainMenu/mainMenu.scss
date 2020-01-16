@@ -30,12 +30,14 @@
         pointer-events: all;
 
         [aria-expanded="false"] > & {
-            transition: transform 0.2s ease-out;
+            transition: transform 0.2s ease-out, visibility 0.2s ease-out;
+            visibility: hidden;
         }
         
         [aria-expanded="true"] > & {
-            transition: transform 0.2s ease-out;
+            transition: transform 0.2s ease-out, visibility 0.2s ease-out;
             transform: translateX(0);
+            visibility: visible;
         }
     }
 
