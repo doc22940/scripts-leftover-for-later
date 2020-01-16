@@ -8,7 +8,7 @@ export default class Component {
         this.assignComponentElements();
         if (this.prepare) { this.prepare(); }
         if (this.init) { this.init(); }
-        this.publishReady();
+        if (EventBus) { this.publishReady(); }
     }
 
     assignComponentElements() {
@@ -21,7 +21,7 @@ export default class Component {
             this.componentName.charAt(0).toLowerCase() 
             + this.componentName.slice(1); // convert to camelCase to select within dataset
 
-        Array.from(this.el.querySelectorAll(`[data-${componentDataName}-el]`)).forEach((componentEl) => {            
+        Array.from(this.el.querySelectorAll(`[data-${componentDataName}-el]`)).forEach((componentEl) => {
             const elementName = componentEl.dataset[`${componentSelector}El`];
             this[elementName] = componentEl;
         })
@@ -29,7 +29,7 @@ export default class Component {
 
     publishReady() {
         const eventName = `on${
-            this.componentName.charAt(0).toUpperCase() + 
+            this.componentName.charAt(0).toUpperCase() + // convert to camelCase to select within event name
             this.componentName.slice(1)
         }Ready`
 

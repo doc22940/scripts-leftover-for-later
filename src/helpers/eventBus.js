@@ -1,7 +1,4 @@
 /**
- * Based on Event bus by Pierfrancesco Soffritti
- * https://medium.com/@soffritti.pierfrancesco/create-a-simple-event-bus-in-javascript-8aa0370b3969
- *
  * subscriptions data format:
  * { eventType: { id: callback } }
  */
