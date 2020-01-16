@@ -53,13 +53,23 @@ it('initializes components', () => {
     const loader = new ComponentLoader();
     expect(loader.lastId).toBe(0);
     loader.initializeComponent(IndexComponent, loremElement);
-    expect(loader.lastId).toBe(1);
+    loader.initializeComponent(IndexComponent, ipsumElement);
+    loader.initializeComponent(IndexComponent, dolorElement);
+    expect(loader.lastId).toBe(3);
 
-    expect(IndexComponent).toHaveBeenCalledTimes(1);
+    expect(IndexComponent).toHaveBeenCalledTimes(3);
 });
 
 it('removes (nested) components', () => {
     const loader = new ComponentLoader();
+    loader.initializeComponent(IndexComponent, loremElement);
+    loader.initializeComponent(IndexComponent, ipsumElement);
+    loader.initializeComponent(IndexComponent, dolorElement);
+    //console.log("1", loader.components);
+    loader.removeComponent(ipsumElement);
+    //console.log("2", loader.components);
+
+    //todo: fix test, 2 and 3 are identical and componentObj is undef
 
     expect(loader.els).toMatchObject({
         0: loremElement
