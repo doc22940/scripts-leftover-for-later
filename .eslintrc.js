@@ -9,8 +9,7 @@ module.exports = {
         allowImportExportEverywhere: true
     },
     extends: [
-        'eslint:recommended',
-        //'airbnb-base'  // broken as of 14.0.0
+        'airbnb-base'
     ],
     "rules": {
         //'airbnb-base' overrides
