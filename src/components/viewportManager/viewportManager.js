@@ -1,42 +1,43 @@
 import Component from '../../helpers/component';
 
 export default class ViewportManager extends Component {
-    init() {
-        if (!window.getComputedStyle(this.el, ':before').getPropertyValue('content')) {
-            console.error('breakpoint check failed');
-            return;
-        }
-
-        window.requestAnimationFrame(() => {
-            this.breakpoint = this.getPropFromCss('viewport');
-            this.oldBreakpoint = this.breakpoint;
-            this.colorScheme = this.getPropFromCss('scheme');
-        })
-
-        window.addEventListener('resize', () => { this.onViewportResize(); }, false);
+  init() {
+    if (!window.getComputedStyle(this.el, ':before').getPropertyValue('content')) {
+      console.error('breakpoint check failed');
+      return;
     }
 
-    getPropFromCss(propName) {
-        return window
-            .getComputedStyle(this.el, ':before')
-            .getPropertyValue('content')
-            .replace(/"| /g, "")
-            .split("_").filter(prop => prop.indexOf(propName) >= 0)[0]
-            .split("-")[1];
-    }
+    window.requestAnimationFrame(() => {
+      this.breakpoint = this.getPropFromCss('viewport');
+      this.oldBreakpoint = this.breakpoint;
+      this.colorScheme = this.getPropFromCss('scheme');
+    });
 
-    onViewportResize() {
-        this.oldBreakpoint = this.breakpoint;
-        this.breakpoint = this.getPropFromCss('viewport');
+    window.addEventListener('resize', () => { this.onViewportResize(); }, false);
+  }
 
-        if (this.oldBreakpoint !== this.breakpoint) {
-            this.publishEvent();
-        }
-    }
+  getPropFromCss(propName) {
+    return window
+      .getComputedStyle(this.el, ':before')
+      .getPropertyValue('content')
+      .replace(/"| /g, '')
+      .split('_')
+      .filter((prop) => prop.indexOf(propName) >= 0)[0]
+      .split('-')[1];
+  }
 
-    publishEvent() {
-        this.el.setAttribute('data-breakpoint', this.breakpoint);
-        this.el.setAttribute('data-color-scheme', this.colorScheme);
-        EventBus.publish('onViewportChange', this.breakpoint);
+  onViewportResize() {
+    this.oldBreakpoint = this.breakpoint;
+    this.breakpoint = this.getPropFromCss('viewport');
+
+    if (this.oldBreakpoint !== this.breakpoint) {
+      this.publishEvent();
     }
+  }
+
+  publishEvent() {
+    this.el.setAttribute('data-breakpoint', this.breakpoint);
+    this.el.setAttribute('data-color-scheme', this.colorScheme);
+    EventBus.publish('onViewportChange', this.breakpoint);
+  }
 }

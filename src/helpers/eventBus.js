@@ -4,56 +4,56 @@
  */
 
 export default class EventBus {
-    constructor() {
-        this.subscriptions = {};
-        this.lastId = 0;
+  constructor() {
+    this.subscriptions = {};
+    this.lastId = 0;
+  }
+
+  subscribe(eventName, callback) {
+    if (!eventName || !callback) {
+      return;
     }
 
-    subscribe(eventName, callback) {
-        if (!eventName || !callback) {
-            return;
-        }
+    const id = this.lastId + 1;
+    this.lastId = id;
 
-        const id = this.lastId + 1;
-        this.lastId = id;
-
-        if (!this.subscriptions[eventName]) {
-            this.subscriptions[eventName] = {};
-        }
-
-        this.subscriptions[eventName][id] = callback;
-
-        const boundUnsubscribe = () => {
-            this.unsubscribe(eventName, id);
-        }
-
-        return {
-            unsubscribe: boundUnsubscribe,
-        };
+    if (!this.subscriptions[eventName]) {
+      this.subscriptions[eventName] = {};
     }
 
-    unsubscribe(eventName, id) {
-        if (!eventName || !id) {
-            return;
-        }
+    this.subscriptions[eventName][id] = callback;
 
-        delete this.subscriptions[eventName][id];
-        if (Object.keys(this.subscriptions[eventName]).length === 0) {
-            delete this.subscriptions[eventName];
-        }
+    const boundUnsubscribe = () => {
+      this.unsubscribe(eventName, id);
+    };
+
+    return {
+      unsubscribe: boundUnsubscribe,
+    };
+  }
+
+  unsubscribe(eventName, id) {
+    if (!eventName || !id) {
+      return;
     }
 
-    publish(eventName, arg) {
-        if (!eventName) {
-            return;
-        }
-
-        if (!this.subscriptions[eventName]) {
-            return;
-        }
-
-        Object.keys(this.subscriptions[eventName]).forEach(
-            (key) => this.subscriptions[eventName][key](arg)
-        );
+    delete this.subscriptions[eventName][id];
+    if (Object.keys(this.subscriptions[eventName]).length === 0) {
+      delete this.subscriptions[eventName];
     }
+  }
+
+  publish(eventName, arg) {
+    if (!eventName) {
+      return;
+    }
+
+    if (!this.subscriptions[eventName]) {
+      return;
+    }
+
+    Object.keys(this.subscriptions[eventName]).forEach(
+      (key) => this.subscriptions[eventName][key](arg)
+    );
+  }
 }
