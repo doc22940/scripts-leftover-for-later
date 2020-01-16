@@ -11,6 +11,7 @@ export default class ViewportManager extends Component {
             this.breakpoint = this.getPropFromCss('viewport');
             this.oldBreakpoint = this.breakpoint;
             this.colorScheme = this.getPropFromCss('scheme');
+            this.publishEvent();
         });
 
         window.addEventListener('resize', () => { this.onViewportResize(); }, false);

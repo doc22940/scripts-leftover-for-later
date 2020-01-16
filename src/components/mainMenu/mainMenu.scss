@@ -82,6 +82,11 @@
             transform: translateX(0);
             background-color: none;
             transition: none;
+
+            &, 
+            [aria-expanded] > & {
+                visibility: visible;
+            }
         }
 
         &__additional-items {

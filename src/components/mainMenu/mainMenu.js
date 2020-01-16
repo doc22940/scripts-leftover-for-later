@@ -35,8 +35,10 @@ export default class MainMenu extends Component {
 
     handleViewportChanges(viewport) {
         if (viewport === 'lg') {
-            EventBus.publish('onMenuViewportLg', this.el);
             EventBus.publish('onMenuClose', this.el);
+            EventBus.publish('onMenuViewportLg', this.el);
+        } else {
+            this.el.setAttribute('aria-expanded', (this.StateMachine.states.toggle.currentState === 'open'));
         }
     }
 
