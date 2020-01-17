@@ -1,4 +1,5 @@
 import './style.scss';
+
 import ComponentLoader from '../helpers/componentLoader';
 // eslint-disable-next-line no-unused-vars
 import Component from '../helpers/component';
@@ -9,7 +10,7 @@ import EventBus from '../helpers/eventBus';
 window.Modules = {
     /**
      * add skeleton functionality:
-     * these imports are deferred and bundles into the main chunk
+     * these imports are deferred and bundled into the main chunk
      * code that's supposed to run on every page load goes here
      */
     colorSchemeToggle: () => import(/* webpackMode: 'eager' */ '../components/colorSchemeToggle/colorSchemeToggle.js'),
@@ -21,12 +22,22 @@ window.Modules = {
 
     /**
      * add module functionality:
-     * these imports are lazy loaded and bundles into separate chunks
+     * these imports are lazy loaded and bundled into separate chunks
      * code that's supposed to run only when it's needed goes here
      */
     devPostTeaser: () => import(/* webpackChunkName: 'devPostTeaser.js' */ '../components/devPostTeaser/devPostTeaser.js'),
     heavyCalculation: () => import(/* webpackChunkName: 'heavyCalculation.js' */ '../components/heavyCalculation/heavyCalculation.js'),
 };
+
+/**
+ * add module styles:
+ * these imports are lazy loaded and bundled into separate chunks
+ * styles that are supposed to load only when they're needed go here
+ */
+window.styles = [
+    import(/* webpackChunkName: 'devPostTeaser' */ '../components/devPostTeaser/devPostTeaser.scss'),
+    import(/* webpackChunkName: 'heavyCalculation' */ '../components/heavyCalculation/heavyCalculation.scss'),
+];
 
 window.EventBus = new EventBus();
 window.StateMachine = StateMachine;

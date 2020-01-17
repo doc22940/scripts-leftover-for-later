@@ -14,8 +14,8 @@ module.exports = env => {
         },
         output: {
             path: path.resolve(__dirname, 'public'),
-            filename: 'bundle.[chunkhash].js',
-            chunkFilename: '[name].[chunkhash].js',
+            filename: 'js/bundle.[chunkhash].js',
+            chunkFilename: 'js/[name].[chunkhash].js',
         },
         module: {
             rules: [
@@ -42,10 +42,10 @@ module.exports = env => {
                     test: /\.(scss|sass|css)$/,
                     use: [
                         MiniCssExtractPlugin.loader,
-                        { loader: 'css-loader', options: { url: false, sourceMap: true } },
+                        { loader: 'css-loader', options: { url: false, sourceMap: (env.mode === 'development') } },
                         {
                             loader: 'sass-loader',
-                            options: { sourceMap: true },
+                            options: { sourceMap: (env.mode === 'development') },
                         },
                     ],
                 },
@@ -61,8 +61,8 @@ module.exports = env => {
                 defaultAttribute: 'defer',
             }),
             new MiniCssExtractPlugin({
-                filename: 'styles.css',
-                chunkFilename: '[id].css',
+                filename: 'css/styles.css',
+                chunkFilename: 'css/[name].css',
             }),
             new ScriptExtHtmlWebpackPlugin({
                 preload: /\.js$/,
