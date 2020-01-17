@@ -6,3 +6,13 @@
     --font-inverted: hsla(0, 0%, var(--contrast), var(--font-opacity));
     --bg-grey: hsla(0, 0%, calc(var(--contrast) * 0.2), var(--font-opacity));
 }
+
+body[data-state-color-scheme="dark"] {
+    @include darkMode();
+}
+
+@media (prefers-color-scheme: dark) {
+    body:not([data-state-color-scheme="light"]) {
+        @include darkMode();
+    }
+}

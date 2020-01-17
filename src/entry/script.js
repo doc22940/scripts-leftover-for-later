@@ -5,8 +5,13 @@ import Component from '../helpers/component';
 import StateMachine from '../helpers/stateMachine';
 import EventBus from '../helpers/eventBus';
 
+// register components here
 window.Modules = {
-    /* add site functionality: */
+    /**
+     * add skeleton functionality:
+     * these imports are deferred and bundles into the main chunk
+     * code that's supposed to run on every page load goes here
+     */
     colorSchemeToggle: () => import(/* webpackMode: 'eager' */ '../components/colorSchemeToggle/colorSchemeToggle.js'),
     header: () => import(/* webpackMode: 'eager' */ '../components/header/header.js'),
     index: () => import(/* webpackMode: 'eager' */ '../components/index/index.js'),
@@ -14,7 +19,11 @@ window.Modules = {
     overlay: () => import(/* webpackMode: 'eager' */ '../components/overlay/overlay.js'),
     viewportManager: () => import(/* webpackMode: 'eager' */ '../components/viewportManager/viewportManager.js'),
 
-    /* add module functionality: */
+    /**
+     * add module functionality:
+     * these imports are lazy loaded and bundles into separate chunks
+     * code that's supposed to run only when it's needed goes here
+     */
     devPostTeaser: () => import(/* webpackChunkName: 'devPostTeaser.js' */ '../components/devPostTeaser/devPostTeaser.js'),
     heavyCalculation: () => import(/* webpackChunkName: 'heavyCalculation.js' */ '../components/heavyCalculation/heavyCalculation.js'),
 };

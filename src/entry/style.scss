@@ -1,1 +1,14 @@
-@import '../helpers/styles/utility';
+@import '../helpers/styles/layout';
+@import '../helpers/styles/colors';
+@import '../helpers/styles/darkMode';
+@import '../helpers/styles/typography';
+@import '../helpers/styles/visuallyHidden';
+
+@import '../components/overlay/overlay';
+@import '../components/header/header';
+@import '../components/mainMenu/mainMenu';
+@import '../components/colorSchemeToggle/colorSchemeToggle';
+@import '../components/viewportManager/viewportManager';
+@import '../components/loader/loader';
+@import '../components/devPostTeaser/devPostTeaser';
+@import '../components/heavyCalculation/heavyCalculation';
