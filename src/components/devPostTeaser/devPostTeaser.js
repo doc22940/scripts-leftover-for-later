@@ -1,3 +1,4 @@
+import './devPostTeaser.scss';
 import Component from '../../helpers/component';
 
 export default class DevPostTeaser extends Component {

@@ -1,10 +1,12 @@
 const path = require('path');
+const WebpackAssetsManifest = require('webpack-assets-manifest');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries");
 
 module.exports = env => {
     return {
@@ -76,6 +78,10 @@ module.exports = env => {
                 openAnalyzer: env.stats,
                 reportFilename: 'report/index.html',
             }),
+            new WebpackAssetsManifest({
+                output: 'assetManifest.json',
+            }),
+            new FixStyleOnlyEntriesPlugin(),
         ],
     }
 };

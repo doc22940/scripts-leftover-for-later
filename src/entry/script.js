@@ -13,31 +13,21 @@ window.Modules = {
      * these imports are deferred and bundled into the main chunk
      * code that's supposed to run on every page load goes here
      */
-    colorSchemeToggle: () => import(/* webpackMode: 'eager' */ '../components/colorSchemeToggle/colorSchemeToggle.js'),
-    header: () => import(/* webpackMode: 'eager' */ '../components/header/header.js'),
-    index: () => import(/* webpackMode: 'eager' */ '../components/index/index.js'),
-    mainMenu: () => import(/* webpackMode: 'eager' */ '../components/mainMenu/mainMenu.js'),
-    overlay: () => import(/* webpackMode: 'eager' */ '../components/overlay/overlay.js'),
-    viewportManager: () => import(/* webpackMode: 'eager' */ '../components/viewportManager/viewportManager.js'),
+    colorSchemeToggle: () => import(/* webpackMode: 'eager' */ '../components/colorSchemeToggle/colorSchemeToggle'),
+    header: () => import(/* webpackMode: 'eager' */ '../components/header/header'),
+    index: () => import(/* webpackMode: 'eager' */ '../components/index/index'),
+    mainMenu: () => import(/* webpackMode: 'eager' */ '../components/mainMenu/mainMenu'),
+    overlay: () => import(/* webpackMode: 'eager' */ '../components/overlay/overlay'),
+    viewportManager: () => import(/* webpackMode: 'eager' */ '../components/viewportManager/viewportManager'),
 
     /**
      * add module functionality:
      * these imports are lazy loaded and bundled into separate chunks
      * code that's supposed to run only when it's needed goes here
      */
-    devPostTeaser: () => import(/* webpackChunkName: 'devPostTeaser.js' */ '../components/devPostTeaser/devPostTeaser.js'),
-    heavyCalculation: () => import(/* webpackChunkName: 'heavyCalculation.js' */ '../components/heavyCalculation/heavyCalculation.js'),
+    devPostTeaser: () => import(/* webpackChunkName: 'devPostTeaser' */ '../components/devPostTeaser/devPostTeaser'),
+    heavyCalculation: () => import(/* webpackChunkName: 'heavyCalculation' */ '../components/heavyCalculation/heavyCalculation'),
 };
-
-/**
- * add module styles:
- * these imports are lazy loaded and bundled into separate chunks
- * styles that are supposed to load only when they're needed go here
- */
-window.styles = [
-    import(/* webpackChunkName: 'devPostTeaser' */ '../components/devPostTeaser/devPostTeaser.scss'),
-    import(/* webpackChunkName: 'heavyCalculation' */ '../components/heavyCalculation/heavyCalculation.scss'),
-];
 
 window.EventBus = new EventBus();
 window.StateMachine = StateMachine;

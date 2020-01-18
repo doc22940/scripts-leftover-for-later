@@ -1,5 +1,6 @@
 import Component from '../../helpers/component';
 import HeavyCalculationWorker from './heavyCalculation.worker';
+import './heavyCalculation.scss';
 
 export default class HeavyCalculation extends Component {
     prepare() {
