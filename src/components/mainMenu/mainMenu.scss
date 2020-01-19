@@ -41,6 +41,10 @@
         }
     }
 
+    &__link {
+        color: var(--font);
+    }
+
     &__additional-items {
         display: flex;
         justify-content: flex-end;
@@ -95,6 +99,7 @@
 
         &__item,
         &__additional-item {
+            flex: 1 0 auto;
             display: flex;
             align-items: center;
             font-size: 1em;

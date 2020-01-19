@@ -15,9 +15,14 @@
     }
 }
 
-a {
+* {
+    line-height: 1.5em;
+}
+
+a[href] {
     @include link();
 
+    article li &,
     p &,
     cite & {
         @include inlineLink();

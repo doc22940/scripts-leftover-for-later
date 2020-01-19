@@ -1,30 +1,51 @@
 <article>
     <header>
-        <h1>Lorem Ipsum</h1>
+        <h1>Hi ✌️</h1>
     </header>
-    <p>Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Donec sollicitudin molestie malesuada. Proin eget tortor risus. Donec sollicitudin molestie malesuada. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Nulla porttitor accumsan tincidunt. Nulla quis lorem ut libero malesuada feugiat. Donec sollicitudin molestie malesuada. Nulla quis lorem ut libero malesuada feugiat. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula.</p>
-    <p>Vivamus <a href="#">suscipit</a> tortor eget felis porttitor volutpat. Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Donec rutrum congue leo eget malesuada. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vivamus suscipit tortor eget felis porttitor volutpat. Nulla quis lorem ut libero malesuada feugiat.</p>
-    <h1>Headline 1</h1>
-    <h2>Headline 2</h2>
-    <h3>Headline 3</h3>
-    <h4>Headline 4</h4>
-    <h5>Headline 5</h5>
-    <h6>Headline 6</h6>
-    <p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur aliquet quam id dui posuere blandit. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Pellentesque in ipsum id orci porta dapibus. Sed porttitor lectus nibh. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed porttitor lectus nibh. Nulla quis lorem ut libero malesuada feugiat. Proin eget tortor risus. Donec sollicitudin molestie malesuada. Sed porttitor lectus nibh.</p>
-    <hr>
+    <p>This is a collection of some components that I use from time to time.<br>
+    Beware this is a work in progress. It will propably be forever, but right now I haven't even finished writing this document.<br>
+    <a href="https://gitlab.com/iamschulz/basics">Here's</a> the repo.</p>
+    <h2><a id="whatsin">What's in?</a></h2>
     <ul>
-        <li>Bullet point #1</li>
-        <li>Bullet point #2</li>
-        <li>Bullet point #3</li>
+        <li><a href="#eventbus">Event Bus</a></li>
+        <li><a href="#statemachine">State Machine</a></li>
+        <li>
+            <a href="#componentloader">Component Loader</a>
+            <ul>
+                <li><a href="#breakpoint">Breakpoint Manager</a></li>
+                <li><a href="#themeswitch">Theme Switch</a></li>
+                <li><a href="#overlay">Overlay</a></li>
+                <li><a href="#mainmenu">Offcanvas Menu</a></li>
+                <li><s><a href="#modal">Modal</a></s></li>
+                <li><s><a href="#carousel">Carousel</a></s></li>
+                <li><s><a href="#code">Code Section</a></s></li>
+                <li><a href="#devpostteaser">Article Teaser for DEV.to</a></li>
+                <li><a href="#worker">Prototype for Multithreaded Component</a></li>
+            </ul>
+        </li>
+        <li><a href="#styles">A CSS theme</a></li>
     </ul>
-    <ol>
-        <li>Bullet point #1</li>
-        <li>Bullet point #2</li>
-        <li>Bullet point #3</li>
-    </ol>
-    <p>Donec rutrum congue leo eget malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Pellentesque in ipsum id orci porta dapibus. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</p>
+
+    <hr>
+
+    <h2><a id="designprinciples">Design Principles</a></h2>
+    <p>These components are built with <a href="https://en.wikipedia.org/wiki/Progressive_enhancement">Progressive Enhancement</a> and Accessibility in mind.</p>
     <blockquote>
         Progressive enhancement is a strategy for web design that emphasizes core webpage content first. This strategy then progressively adds more nuanced and technically rigorous layers of presentation and features on top of the content as the end-user's browser/internet connection allow. The proposed benefits of this strategy are that it allows everyone to access the basic content and functionality of a web page, using any browser or Internet connection, while also providing an enhanced version of the page to those with more advanced browser software or greater bandwidth.
         <footer><cite><a href="https://en.wikipedia.org/wiki/Progressive_enhancement">Wikipedia</a></cite></footer>
     </blockquote>
+
+    <hr>
+
+    <h2><a id="examples">Examples</a></h2>
+
+    <h3><a id="devpostteaser">Article Teaser for DEV.to</a></h3>
+    <p>Fetch and display an article teaser to a post on <a href="https://dev.to">DEV.to</a></p>
+    ${require('../devPostTeaser/devPostTeaser.html')}
+
+    <hr>
+
+    <h3><a id="worker">Prototype for Multithreaded Component</a></h3>
+    <p>This component performs a costly operation to count up to a certain number, but is deferred to a webworker. I try to keep this prototype as simple as possible in order to asbtract it later.</p>
+    ${require('../heavyCalculation/heavyCalculation.html')}
 </article>

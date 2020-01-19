@@ -5,6 +5,10 @@ $lg-width: 64.0625rem; // 1025px
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: sans-serif;
     margin: 0;
