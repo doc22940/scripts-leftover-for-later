@@ -1,6 +1,19 @@
 $md-width: 42.5rem; // 680px
 $lg-width: 64.0625rem; // 1025px
 
+:root {
+    --spacing-x: 1rem;
+    --spacing-y: 1rem;
+    --content-width:  #{$lg-width};
+    --content-narrow-width:  #{$md-width};
+    --line-width: .2rem;
+
+    --z-overlay: 100;
+    --z-header: 90;
+    --z-menu: 110;
+    --z-below: -1;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -41,10 +54,46 @@ main {
     }
 }
 
+.narrow {
+    max-width: var(--content-narrow-width);
+}
+
 hr {
     border-top: var(--line-width) dashed var(--bg-grey);
     border-bottom: none;
     border-left: none;
     border-right: none;
     margin: calc(2 * var(--spacing-y)) 0;
+}
+
+ul, ol {
+    padding-inline-start: var(--spacing-x);
+
+    & {
+        padding-inline-start: calc(var(--spacing-x) * 2);
+    }
+}
+
+blockquote {
+    position: relative;
+    max-width: var(--content-narrow-width);
+    margin: auto;
+    margin-block-start: var(--spacing-y);
+    margin-block-end: var(--spacing-y);
+    padding-inline-start: var(--spacing-x);
+    padding-inline-end: var(--spacing-x);
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 1px;
+        height: 100%;
+        border-left: var(--line-width) dashed var(--bg-grey);
+    }
+
+    > footer {
+        margin-top: calc(var(--spacing-y) / 2);
+    }
 }
