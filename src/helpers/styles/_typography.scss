@@ -8,10 +8,10 @@
 }
 
 @mixin inlineLink {
-    color: var(--accent);
+    color: var(--fg-grey);
 
     &:hover {
-        text-decoration-color: var(--font);
+        color: inherit;
     }
 }
 

@@ -5,6 +5,7 @@
     --font: hsla(0, 0%, var(--contrast), var(--font-opacity));
     --font-inverted: hsla(0, 0%, var(--contrast), var(--font-opacity));
     --bg-grey: hsla(0, 0%, calc(var(--contrast) * 0.2), var(--font-opacity));
+    --fg-grey: hsla(0, 0%, calc(var(--contrast) * 0.8), var(--font-opacity));
 }
 
 body[data-state-color-scheme="dark"] {
