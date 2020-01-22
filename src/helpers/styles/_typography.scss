@@ -58,12 +58,12 @@ h5 { font-size: calc(var(--baseFontSize) * 0.9); }
 h6 { font-size: calc(var(--baseFontSize) * 0.8); }
 
 main {
-    --baseFontSize: 1.3rem;
+    --baseFontSize: 1.2rem;
     font-size: var(--baseFontSize);
 }
 
 @media screen and (min-width: $lg-width) {
     main {
-        --baseFontSize: 1.5rem;
+        --baseFontSize: 1.3rem;
     }
 }
