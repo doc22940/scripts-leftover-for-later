@@ -1,0 +1,25 @@
+.carousel {
+    overflow: auto;
+
+    &[data-slider-ready] {
+        overflow: hidden;
+    }
+    
+    &__grid {
+        display: flex;
+        align-items: center;
+        transform: translateX(0);
+
+        > * + * {
+            margin-left: var(--spacing-x);
+        }
+    }
+
+    &__item {
+        pointer-events: none;
+
+        p, a, form, input, button {
+            pointer-events: all;
+        }
+    }
+}
