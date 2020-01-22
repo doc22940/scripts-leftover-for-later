@@ -1,3 +1,8 @@
+:root {
+    --baseFontSize: 1rem;
+    --baseLineHeight: 1.5em;
+}
+
 @mixin link {
     color: inherit;
     text-decoration-thickness: 0.11em;
@@ -16,7 +21,7 @@
 }
 
 * {
-    line-height: 1.5em;
+    line-height: var(--baseLineHeight);
 }
 
 a[href] {
@@ -30,6 +35,12 @@ a[href] {
 }
 
 h1, h2, h3, h4, h5, h6 {
+    margin-bottom: var(--spacing-y);
+
+    &:first-of-type {
+        margin-top: 0;
+    }
+
     a[id] {
         &::after {
             content: "#";
@@ -39,10 +50,20 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
-h1 {
-    font-size: 2em;
+h1 { font-size: calc(var(--baseFontSize) * 2); }
+h2 { font-size: calc(var(--baseFontSize) * 1.5); }
+h3 { font-size: calc(var(--baseFontSize) * 1.2); }
+h4 { font-size: calc(var(--baseFontSize) * 1); }
+h5 { font-size: calc(var(--baseFontSize) * 0.9); }
+h6 { font-size: calc(var(--baseFontSize) * 0.8); }
 
-    &:first-of-type {
-        margin-top: 0;
+main {
+    --baseFontSize: 1.3rem;
+    font-size: var(--baseFontSize);
+}
+
+@media screen and (min-width: $lg-width) {
+    main {
+        --baseFontSize: 1.5rem;
     }
 }

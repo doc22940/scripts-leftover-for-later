@@ -1,4 +1,6 @@
 .header {
+    --baseFontSize: 1rem;
+
     position: sticky;
     top: 0;
     display: flex;
@@ -12,15 +14,15 @@
     &__title {
         margin: 0;
         padding: 0;
-        font-size: 1.5rem;
+        font-size: calc(var(--baseFontSize) * 2);
     }
 
     &__menu-button {
-        flex: 0 0 calc(7ch + var(--menuButtonSize));
-        display: flex;
+        flex: 0 1 auto;
+        display: block;
         align-items: center;
         margin-left: calc(2 * var(--spacing-x));
-        font-size: 1em;
+        font-size: var(--baseFontSize);
         appearance: none;
         border: none;
         background: none;
@@ -29,16 +31,23 @@
     }
 
     &__menu-icon {
-        margin-right: var(--spacing-x);
+        margin: 0 0.4ch;
+        vertical-align: middle;
 
         *:hover > & {
             color: var(--accent);
         }
     }
+
+    &__menu-text {
+        vertical-align: middle;
+    }
 }
 
 @media screen and (min-width: $lg-width) {
     .header {
+        --baseFontSize: 1.5rem;
+
         position: relative;
         display: block;
         padding: 0;
