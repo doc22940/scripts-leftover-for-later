@@ -69,7 +69,7 @@ hr {
 ul, ol {
     padding-inline-start: var(--spacing-x);
 
-    & {
+    ul, ol {
         padding-inline-start: calc(var(--spacing-x) * 2);
     }
 }

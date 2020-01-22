@@ -1,11 +1,14 @@
 /**
- * adds a swipe event to a DOM element
- * event returns swipe start and end points, direction and distance
+ * adds a swipe and a swipestop event to a DOM element
+ * events return swipe start and end points, direction and distance
  * triggers on touch and mouse events
  *
  * usage:
  *      new SwipeDetection(el).init();
         el.addEventListener('swipe', (event) => {
+            console.log(event.detail);
+        });
+        el.addEventListener('swipestop', (event) => {
             console.log(event.detail);
         });
  */
@@ -113,6 +116,7 @@ export default class SwipeDetection {
             || (stopEvent.type === 'mouseout' && !document.contains(stopEvent.relatedTarget))
         ) {
             this.removeStopListener();
+            this.publishEvent('swipestop');
             this.reset();
         }
     }
@@ -139,11 +143,13 @@ export default class SwipeDetection {
         return direction;
     }
 
-    publishEvent() {
-        const swipeEvent = new CustomEvent('swipe', {
+    publishEvent(eventName = 'swipe') {
+        const swipeEvent = new CustomEvent(eventName, {
             bubbles: true,
             detail: this.swipeData,
         });
-        this.el.dispatchEvent(swipeEvent);
+        if (this.swipeData.distance > 0 && this.swipeData.direction) {
+            this.el.dispatchEvent(swipeEvent);
+        }
     }
 }
