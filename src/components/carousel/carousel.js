@@ -7,7 +7,7 @@ export default class Carousel extends Component {
         this.items = this.grid.children;
         this.itemcount = this.items.length - 1;
         this.currentPosition = 0; // px
-        this.leftBoundaryItemIndex = 0;
+        this.boundaryItems = [];
     }
 
     init() {
@@ -25,7 +25,7 @@ export default class Carousel extends Component {
         this.el.addEventListener('swipestop', (event) => { this.boundOnSwipeStop(event); });
 
         this.observeItems();
-        this.determineLeftBoundary();
+        this.calculateBoundaries();
     }
 
     observeItems() {
@@ -37,7 +37,7 @@ export default class Carousel extends Component {
 
         const observer = new IntersectionObserver(callback, {
             root: this.el,
-            threshold: 0.5,
+            threshold: 0.25,
         });
 
         Object.keys(this.items).forEach((index) => {
@@ -51,7 +51,9 @@ export default class Carousel extends Component {
         this.moveGridBy(xDistance);
     }
 
-    onSwipeStop() {
+    onSwipeStop(swipeStopEvent) {
+        const xDistance = swipeStopEvent.detail.end.x - swipeStopEvent.detail.start.x;
+
         this.moveGridBy(0);
 
         const endPosition = window
@@ -60,8 +62,10 @@ export default class Carousel extends Component {
 
         this.currentPosition = endPosition * -1;
 
-        this.determineLeftBoundary();
-        this.moveGridToIndex(this.leftBoundaryItemIndex);
+        this.calculateBoundaries();
+        const reverse = xDistance > 0;
+        const target = reverse ? this.boundaryItems[0] : this.boundaryItems[1];
+        this.moveGridToIndex(target, reverse);
     }
 
     moveGridBy(distance) {
@@ -70,29 +74,44 @@ export default class Carousel extends Component {
         });
     }
 
-    moveGridToIndex(position = 0) {
-        // determine position of index
+    moveGridToIndex(index = 0, reverse = true) {
+        const position = reverse
+            ? this.items[index].offsetLeft
+            : this.items[index].offsetLeft + this.items[index].width - this.grid.clientWidth;
 
         // prime transition
         this.grid.setAttribute('data-autoplay', true);
 
         // execute transition
         window.setTimeout(() => {
-            this.moveGridBy(this.currentPosition); // currentPosition + index.scrollLeft
+            this.moveGridBy(this.currentPosition - position);
         }, 0);
 
         // reset transition
         this.grid.addEventListener('transitionend', () => {
             window.requestAnimationFrame(() => {
-                this.currentPosition = 0; // index.scrollLeft
+                this.currentPosition = position;
             });
             this.grid.setAttribute('data-autoplay', false);
         });
     }
 
-    determineLeftBoundary() {
-        const fallbackItem = this.currentPosition <= 0 ? 0 : this.items.length - 1; // if no items are visible
-        const firstVisibleItem = Array.from(this.items).filter((item) => item.dataset.carouselVisible === 'true')[0];
-        this.leftBoundaryItemIndex = firstVisibleItem ? firstVisibleItem.dataset.carouselIndex : fallbackItem;
+    calculateBoundaries() {
+        // if no items are visible
+        const firstItem = this.currentPosition <= 0 ? 0 : this.items.length - 1;
+        const lastItem = this.currentPosition > this.grid.width ? this.items.length - 1 : 0;
+
+        const visibleItems = Array.from(this.items)
+            .filter((item) => item.dataset.carouselVisible === 'true');
+
+        // first and last currently visible items
+        this.boundaryItems = [
+            visibleItems.length > 0
+                ? visibleItems[0].dataset.carouselIndex
+                : firstItem,
+            visibleItems.length > 0
+                ? visibleItems[visibleItems.length - 1].dataset.carouselIndex
+                : lastItem,
+        ];
     }
 }

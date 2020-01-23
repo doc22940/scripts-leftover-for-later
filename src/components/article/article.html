@@ -2,7 +2,6 @@
     <header>
         <h1>Hi ✌️</h1>
     </header>
-    ${require('../carousel/carousel.html')}
     <p>This is a collection of some components that I use from time to time.<br>
     Beware this is a work in progress. It will propably be forever, but right now I haven't even finished writing this document.<br>
     <a href="https://gitlab.com/iamschulz/basics">Here's</a> the repo.</p>
@@ -18,7 +17,7 @@
                 <li><a href="#overlay">Overlay</a></li>
                 <li><a href="#mainmenu">Offcanvas Menu</a></li>
                 <li><s><a href="#modal">Modal</a></s></li>
-                <li><s><a href="#carousel">Carousel</a></s></li>
+                <li><a href="#carousel">Carousel</a></li>
                 <li><s><a href="#code">Code Section</a></s></li>
                 <li><a href="#devpostteaser">Article Teaser for DEV.to</a></li>
                 <li><a href="#worker">Prototype for Multithreaded Component</a></li>
@@ -71,4 +70,10 @@
     <h3><a id="worker">Prototype for Multithreaded Component</a></h3>
     <p>This component performs a costly operation to count up to a certain number, but is deferred to a webworker. I try to keep this prototype as simple as possible in order to asbtract it later.</p>
     ${require('../heavyCalculation/heavyCalculation.html')}
+
+    <hr>
+
+    <h3><a id="carousel">Carousel</a></h3>
+    <p>A simple carousel and lighweight carousel featuring pointer and touch support and progressively enhanced funcionality. Future iterations of this will include buttons, a center mode and an accessibility audit.</p>
+    ${require('../carousel/carousel.html')}
 </article>

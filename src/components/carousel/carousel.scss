@@ -22,7 +22,7 @@
     &__item {
         pointer-events: none;
 
-        p, a, form, input, button {
+        span, p, a, li, form, input, textarea, button {
             pointer-events: all;
         }
     }
