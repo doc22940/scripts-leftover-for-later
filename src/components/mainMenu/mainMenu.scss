@@ -11,6 +11,19 @@
     pointer-events: none;
     z-index: var(--z-menu);
 
+    &__check {
+        display: none;
+
+        &:checked {
+            position: fixed;
+            display: block;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            pointer-events: all;
+        }
+    }
+
     &__list {
         position: absolute;
         top: 0;
@@ -35,7 +48,8 @@
             visibility: hidden;
         }
         
-        [aria-expanded="true"] > & {
+        [aria-expanded="true"] > &,
+        .main-menu__check:checked ~ & {
             transition: transform 0.2s ease-out, visibility 0.2s ease-out;
             transform: translateX(0);
             visibility: visible;

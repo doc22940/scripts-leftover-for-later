@@ -31,6 +31,8 @@ export default class MainMenu extends Component {
 
         this.boundHandleViewportChanges = (viewport) => { this.handleViewportChanges(viewport); };
         EventBus.subscribe('onViewportChange', this.boundHandleViewportChanges);
+
+        this.checkbox.remove();
     }
 
     handleViewportChanges(viewport) {
