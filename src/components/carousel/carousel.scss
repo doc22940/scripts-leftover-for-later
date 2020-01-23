@@ -10,6 +10,10 @@
         align-items: center;
         transform: translateX(0);
 
+        &[data-autoplay="true"] {
+            transition: transform 0.3s ease-out;
+        }
+
         > * + * {
             margin-left: var(--spacing-x);
         }
