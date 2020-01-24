@@ -31,12 +31,16 @@ it('Component is initialized', () => {
     component.boundOnMenuOpen = jest.fn();
     component.boundOnMenuClose = jest.fn();
     component.boundHandleViewportChanges = jest.fn();
+    component.checkbox = {
+        remove: jest.fn()
+    };
 
     component.init();
 
     expect(EventBus.subscribe).toHaveBeenCalledWith('onMenuToggle', component.boundOnMenuOpen);
     expect(EventBus.subscribe).toHaveBeenCalledWith('onOverlayClose', component.boundOnMenuClose);
     expect(EventBus.subscribe).toHaveBeenCalledWith('onViewportChange', component.boundHandleViewportChanges);
+    expect(component.checkbox.remove).toHaveBeenCalledTimes(1);
 });
 
 it('closes menu and and publishes event on lg viewport change', () =>{

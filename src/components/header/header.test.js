@@ -25,9 +25,13 @@ it('Component is initialized', () => {
     component.menuButton = {
         addEventListener: jest.fn()
     };
+    component.menuLabel = {
+        removeAttribute: jest.fn()
+    };
 
     component.init();
     expect(component.menuButton.addEventListener).toHaveBeenCalledWith('click', component.boundToggleMenuButton);
+    expect(component.menuLabel.removeAttribute).toHaveBeenCalledWith('for');
 });
 
 it('toggles menu', () => {
