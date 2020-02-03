@@ -37,7 +37,7 @@ export default class Carousel extends Component {
 
         const observer = new IntersectionObserver(callback, {
             root: this.el,
-            threshold: 0.25,
+            threshold: 0.1,
         });
 
         Object.keys(this.items).forEach((index) => {
