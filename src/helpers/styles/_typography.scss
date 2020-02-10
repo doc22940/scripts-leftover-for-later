@@ -1,6 +1,7 @@
 :root {
-    --baseFontSize: 1rem;
-    --baseLineHeight: 1.5em;
+    --base-font-size: 1rem;
+    --base-line-height: 1.5em;
+    --scroll-offset: calc(5rem + var(--spacing-y)); // derives from header height
 }
 
 @mixin link {
@@ -21,7 +22,7 @@
 }
 
 * {
-    line-height: var(--baseLineHeight);
+    line-height: var(--base-line-height);
 }
 
 a[href] {
@@ -42,6 +43,8 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     a[id] {
+        padding-top: var(--scroll-offset);
+
         &::after {
             content: "#";
             margin-left: 0.4ch;
@@ -50,20 +53,24 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
-h1 { font-size: calc(var(--baseFontSize) * 2); }
-h2 { font-size: calc(var(--baseFontSize) * 1.5); }
-h3 { font-size: calc(var(--baseFontSize) * 1.2); }
-h4 { font-size: calc(var(--baseFontSize) * 1); }
-h5 { font-size: calc(var(--baseFontSize) * 0.9); }
-h6 { font-size: calc(var(--baseFontSize) * 0.8); }
+h1 { font-size: calc(var(--base-font-size) * 2); }
+h2 { font-size: calc(var(--base-font-size) * 1.5); }
+h3 { font-size: calc(var(--base-font-size) * 1.2); }
+h4 { font-size: calc(var(--base-font-size) * 1); }
+h5 { font-size: calc(var(--base-font-size) * 0.9); }
+h6 { font-size: calc(var(--base-font-size) * 0.8); }
 
 main {
-    --baseFontSize: 1.2rem;
-    font-size: var(--baseFontSize);
+    --base-font-size: 1.2rem;
+    font-size: var(--base-font-size);
 }
 
 @media screen and (min-width: $lg-width) {
+    :root {
+        --scroll-offset: calc(3.75rem + var(--spacing-y)); // derives from header height
+    }
+
     main {
-        --baseFontSize: 1.3rem;
+        --base-font-size: 1.3rem;
     }
 }

@@ -1,6 +1,6 @@
 .main-menu {
     --menuWidth: 20rem; // 320px
-    --baseFontSize: 1rem;
+    --base-font-size: 1rem;
 
     position: fixed;
     top: 0;
@@ -75,7 +75,7 @@
 
     &__item,
     &__additional-item {
-        font-size: calc(var(--baseFontSize) * 1.5);
+        font-size: calc(var(--base-font-size) * 1.5);
         margin: var(--spacing-y) 0;
     }
 }
@@ -83,7 +83,7 @@
 @media screen and (min-width: $lg-width) {
     .main-menu {
         --menuWidth: var(--content-width);
-        --baseFontSize: 1.3rem;
+        --base-font-size: 1.3rem;
 
         position: relative;
         height: auto;
@@ -119,7 +119,7 @@
             flex: 1 0 auto;
             display: flex;
             align-items: center;
-            font-size: var(--baseFontSize);
+            font-size: var(--base-font-size);
             margin: 0;
             
             & + & {
