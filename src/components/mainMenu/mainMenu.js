@@ -2,6 +2,8 @@ import Component from '../../helpers/component';
 
 export default class MainMenu extends Component {
     prepare() {
+        this.anchorLinks = this.el.querySelectorAll('a[href^="#"]');
+
         this.StateMachine = new StateMachine(this, {
             toggle: {
                 closed: {
@@ -32,6 +34,9 @@ export default class MainMenu extends Component {
         this.boundHandleViewportChanges = (viewport) => { this.handleViewportChanges(viewport); };
         EventBus.subscribe('onViewportChange', this.boundHandleViewportChanges);
 
+        this.closeOnAnchorLink();
+
+        // checkbox exists only to support limited functionality without js
         this.checkbox.remove();
     }
 
@@ -44,6 +49,17 @@ export default class MainMenu extends Component {
             this.el.setAttribute('aria-expanded', isOpen);
             EventBus.publish(isOpen ? 'onMenuOpen' : 'onMenuClose', this.el);
         }
+    }
+
+    closeOnAnchorLink() {
+        this.boundOnMenuClose = () => {
+            EventBus.publish('onMenuClose', this.el);
+            EventBus.publish('onAnchorLinkClose', this.el);
+        };
+
+        Array.from(this.anchorLinks).forEach((anchorLink) => {
+            anchorLink.addEventListener('click', this.boundOnMenuClose);
+        });
     }
 
     openMenu() {

@@ -26,13 +26,14 @@ export default class Overlay extends Component {
         };
         EventBus.subscribe('onMenuOpen', this.boundOnMenuOpen);
 
-        this.boundOnMenuViewportLg = (menu) => {
+        this.menuClosed = (menu) => {
             if (this.assignedEl === menu) {
                 this.unassignElement();
                 EventBus.publish('onOverlayClose', this.el);
             }
         };
-        EventBus.subscribe('onMenuViewportLg', this.boundOnMenuViewportLg);
+        EventBus.subscribe('onMenuViewportLg', this.menuClosed);
+        EventBus.subscribe('onAnchorLinkClose', this.menuClosed);
 
         this.boundOnClick = () => {
             this.unassignElement();
