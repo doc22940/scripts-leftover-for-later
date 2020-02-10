@@ -31,6 +31,7 @@ it('Component is initialized', () => {
     component.boundOnMenuOpen = jest.fn();
     component.boundOnMenuClose = jest.fn();
     component.boundHandleViewportChanges = jest.fn();
+    component.closeOnAnchorLink = jest.fn();
     component.checkbox = {
         remove: jest.fn()
     };

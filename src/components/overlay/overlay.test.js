@@ -27,7 +27,7 @@ it('Component is initialized', () => {
     component.el = document.querySelector('[data-component="overlay"]');
     component.el.addEventListener = jest.fn();
     component.boundOnMenuOpen = jest.fn();
-    component.boundOnMenuViewportLg = jest.fn();
+    component.menuClosed = jest.fn();
     component.boundOnClick = jest.fn();
     component.assignElement = jest.fn();
     component.unassignElement = jest.fn();
@@ -35,14 +35,14 @@ it('Component is initialized', () => {
     component.init();
 
     expect(EventBus.subscribe).toHaveBeenCalledWith('onMenuOpen', component.boundOnMenuOpen);
-    expect(EventBus.subscribe).toHaveBeenCalledWith('onMenuViewportLg', component.boundOnMenuViewportLg);
+    expect(EventBus.subscribe).toHaveBeenCalledWith('onMenuViewportLg', component.menuClosed);
     expect(component.el.addEventListener).toHaveBeenCalledWith('click', component.boundOnClick)
 
     component.boundOnMenuOpen();
     expect(component.assignElement).toHaveBeenCalledTimes(1);
     expect(EventBus.publish).toHaveBeenCalledWith('onOverlayOpen', component.el);
 
-    component.boundOnMenuViewportLg();
+    component.menuClosed();
     expect(component.unassignElement).toHaveBeenCalledTimes(1);
     expect(EventBus.publish).toHaveBeenCalledWith('onOverlayClose', component.el);
 
