@@ -77,7 +77,7 @@ export default class Carousel extends Component {
     moveGridToIndex(index = 0, reverse = true) {
         const position = reverse
             ? this.items[index].offsetLeft
-            : this.items[index].offsetLeft + this.items[index].width - this.grid.clientWidth;
+            : this.items[index].offsetLeft + this.items[index].clientWidth - this.grid.clientWidth;
 
         // prime transition
         this.grid.setAttribute('data-autoplay', true);
