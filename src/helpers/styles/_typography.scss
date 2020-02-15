@@ -43,7 +43,14 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     a[id] {
-        padding-top: var(--scroll-offset);
+        &::before {
+            content: "";
+            position: relative;
+            display: block;
+            padding-top: var(--scroll-offset);
+            margin-top: calc(var(--scroll-offset) * -1);
+            pointer-events: none;
+        }
 
         &::after {
             content: "#";
