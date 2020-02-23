@@ -35,6 +35,10 @@ a[href] {
     }
 }
 
+a[id] {
+    scroll-margin-top: var(--scroll-offset);
+}
+
 h1, h2, h3, h4, h5, h6 {
     margin-bottom: var(--spacing-y);
 
@@ -43,15 +47,6 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     a[id] {
-        &::before {
-            content: "";
-            position: relative;
-            display: block;
-            padding-top: var(--scroll-offset);
-            margin-top: calc(var(--scroll-offset) * -1);
-            pointer-events: none;
-        }
-
         &::after {
             content: "#";
             margin-left: 0.4ch;
