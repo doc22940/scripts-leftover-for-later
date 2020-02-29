@@ -19,7 +19,9 @@ $lg-width: 64.0625rem; // 1025px
 }
 
 html {
-    scroll-behavior: smooth;
+    @media (prefers-reduced-motion: no-preference) {
+        scroll-behavior: smooth;
+    }
 }
 
 body {

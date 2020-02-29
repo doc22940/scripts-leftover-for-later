@@ -19,7 +19,10 @@
         border-radius: .5rem;
         background: radial-gradient(circle, var(--accent) 39.9%, var((--font-inverted)) 40%);
         background-position: -.5rem 0;
-        transition: background-position .2s ease-out;
+        
+        @media (prefers-reduced-motion: no-preference) {
+            transition: background-position .2s ease-out;
+        }
 
         &:checked {
             background-position: .5rem 0;
