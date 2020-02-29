@@ -78,10 +78,8 @@ blockquote {
     position: relative;
     max-width: var(--content-narrow-width);
     margin: auto;
-    margin-block-start: var(--spacing-y);
-    margin-block-end: var(--spacing-y);
-    padding-inline-start: var(--spacing-x);
-    padding-inline-end: var(--spacing-x);
+    padding-left: var(--spacing-x);
+    margin: var(--spacing-y) 0;
 
     &::before {
         content: "";
