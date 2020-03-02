@@ -25,15 +25,15 @@ export default class SwipeDetection {
     reset() {
         this.swipeData = {
             start: {
-                x: undefined,
-                y: undefined,
+                x: null,
+                y: null,
             },
             end: {
-                x: undefined,
-                y: undefined,
+                x: null,
+                y: null,
             },
-            direction: undefined,
-            distance: undefined,
+            direction: null,
+            distance: null,
         };
 
         this.removeDragListener();
@@ -49,7 +49,7 @@ export default class SwipeDetection {
             this.el.removeEventListener('mousedown', this.boundStartTrackSwipe);
             this.el.removeEventListener('touchstart', this.boundStartTrackSwipe);
         }
-        this.boundStopTrackSwipe = undefined;
+        this.boundStopTrackSwipe = null;
     }
 
     removeDragListener() {
@@ -57,18 +57,19 @@ export default class SwipeDetection {
             document.body.removeEventListener('mousemove', this.boundTrackSwipe);
             document.body.removeEventListener('touchmove', this.boundTrackSwipe);
         }
-        this.boundTrackSwipe = undefined;
+        this.boundTrackSwipe = null;
     }
 
     removeStopListener() {
         if (this.boundStopTrackSwipe) {
             this.el.removeEventListener('mouseup', this.boundStopTrackSwipe);
             window.removeEventListener('mouseout', this.boundStopTrackSwipe);
+            this.el.removeEventListener('mouseout', this.boundStopTrackSwipe);
             this.el.removeEventListener('touchend', this.boundStopTrackSwipe);
             this.el.removeEventListener('touchcancel', this.boundStopTrackSwipe);
         }
-        this.boundStopTrackSwipe = undefined;
-        this.pointerLocation = undefined;
+        this.boundStopTrackSwipe = null;
+        this.pointerLocation = null;
     }
 
     startTrackSwipe(startEvent) {
@@ -86,6 +87,7 @@ export default class SwipeDetection {
         this.boundStopTrackSwipe = (event) => this.stopTrackSwipe(event);
         this.el.addEventListener('mouseup', this.boundStopTrackSwipe);
         window.addEventListener('mouseout', this.boundStopTrackSwipe);
+        this.el.addEventListener('mouseout', this.boundStopTrackSwipe);
         this.el.addEventListener('touchend', this.boundStopTrackSwipe);
         this.el.addEventListener('touchcancel', this.boundStopTrackSwipe);
 
