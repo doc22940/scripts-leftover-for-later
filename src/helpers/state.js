@@ -47,15 +47,17 @@ export default class State {
     }
 
     initStates() {
-        Object.keys(this.states).forEach((index) => {
-            if (this.states[index] === this.states.value) {
-                if (!this.states[this.states.value]) {
-                    console.error('default method invalid for', this.component);
-                    return;
+        // wait for all StateMachines to be registered, then initialize everything
+        window.setTimeout(() => {
+            Object.keys(this.states).forEach((index) => {
+                if (this.states[index] === this.states.value) {
+                    if (!this.states[this.states.value]) {
+                        console.error('default method invalid for', this.component);
+                        return;
+                    }
+                    this.changeState(this.states.value, this.component.el);
                 }
-
-                this.changeState(this.states.value, this.component.el);
-            }
-        });
+            });
+        }, 0);
     }
 }
