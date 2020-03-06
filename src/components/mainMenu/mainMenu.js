@@ -6,9 +6,9 @@ export default class MainMenu extends Component {
 
         this.StateMachine = new StateMachine(this, {
             toggle: {
+                value: 'closed',
                 closed: {
                     event: 'onMenuClose',
-                    initial: true,
                     on: 'closeMenu',
                 },
                 open: {

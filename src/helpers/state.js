@@ -12,6 +12,8 @@ export default class State {
     addEventMethods() {
         Object.keys(this.states).forEach((index) => {
             const state = this.states[index];
+            if (typeof state !== 'object') return;
+
             EventBus.subscribe(state.event, (eventEl) => {
                 this.changeState(index, eventEl);
             });
@@ -45,11 +47,14 @@ export default class State {
     }
 
     initStates() {
-        this.changeState();
-
         Object.keys(this.states).forEach((index) => {
-            if (this.states[index].initial) {
-                this.changeState(index, this.component.el);
+            if (this.states[index] === this.states.value) {
+                if (!this.states[this.states.value]) {
+                    console.error('default method invalid for', this.component);
+                    return;
+                }
+
+                this.changeState(this.states.value, this.component.el);
             }
         });
     }

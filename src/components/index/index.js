@@ -4,12 +4,12 @@ export default class index extends Component {
     init() {
         this.StateMachine = new StateMachine(this, {
             scrolling: {
+                value: 'enabled',
                 disabled: {
                     event: 'onDisableScroll',
                 },
                 enabled: {
                     event: 'onEnableScroll',
-                    initial: true,
                 },
             },
             colorScheme: {

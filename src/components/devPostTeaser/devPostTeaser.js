@@ -10,9 +10,9 @@ export default class DevPostTeaser extends Component {
 
         this.StateMachine = new StateMachine(this, {
             fetch: {
+                value: 'loading',
                 loading: {
                     event: 'devPostTeaserLoading',
-                    initial: true,
                     on: 'loadPost',
                 },
                 loaded: {

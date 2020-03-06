@@ -6,9 +6,9 @@ export default class Overlay extends Component {
 
         this.StateMachine = new StateMachine(this, {
             toggle: {
+                value: 'closed',
                 closed: {
                     event: 'onOverlayClose',
-                    initial: true,
                     on: 'publishCloseEvents',
                 },
                 open: {
