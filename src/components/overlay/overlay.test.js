@@ -66,7 +66,7 @@ it('enables scrolling on close', () => {
 it('assignes elements', () => {
     const component = new Component();
     const element = {};
-    component.assignedEl = undefined;
+    component.assignedEl = null;
     component.assignElement(element);
     expect(component.assignedEl).toBe(element);
 });
@@ -75,5 +75,5 @@ it('unassignes elements', () => {
     const component = new Component();
     component.assignedEl = {};
     component.unassignElement();
-    expect(component.assignedEl).toBe(undefined);
+    expect(component.assignedEl).toBe(null);
 });

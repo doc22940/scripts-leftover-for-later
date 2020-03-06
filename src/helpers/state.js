@@ -3,7 +3,7 @@ export default class State {
         this.name = name;
         this.states = state;
         this.component = component;
-        this.currentState = undefined;
+        this.currentState = null;
 
         this.addEventMethods();
         this.initStates();

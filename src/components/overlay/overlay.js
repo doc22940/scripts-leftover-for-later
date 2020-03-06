@@ -2,7 +2,7 @@ import Component from '../../helpers/component';
 
 export default class Overlay extends Component {
     prepare() {
-        this.assignedEl = undefined;
+        this.assignedEl = null;
 
         this.StateMachine = new StateMachine(this, {
             toggle: {
@@ -57,6 +57,6 @@ export default class Overlay extends Component {
     }
 
     unassignElement() {
-        this.assignedEl = undefined;
+        this.assignedEl = null;
     }
 }
