@@ -28,6 +28,7 @@ window.Modules = {
     devPostTeaser: () => import(/* webpackChunkName: 'devPostTeaser' */ '../components/devPostTeaser/devPostTeaser'),
     heavyCalculation: () => import(/* webpackChunkName: 'heavyCalculation' */ '../components/heavyCalculation/heavyCalculation'),
     carousel: () => import(/* webpackChunkName: 'carousel' */ '../components/carousel/carousel'),
+    modal: () => import(/* webpackChunkName: 'modal' */ '../components/modal/modal'),
 };
 
 window.EventBus = new EventBus();
