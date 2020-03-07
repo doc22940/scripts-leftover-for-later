@@ -6,13 +6,29 @@ export default class State {
         this.currentState = null;
 
         this.addEventMethods();
-        this.initStates();
+
+        // wait for all StateMachines to be registered, then initialize everything
+        window.setTimeout(() => {
+            this.Update = this.states.value;
+        });
+    }
+
+    set Update(newState) {
+        this.changeState(newState, this.el);
+    }
+
+    get Value() {
+        return this.currentState;
+    }
+
+    get States() {
+        return this.states;
     }
 
     addEventMethods() {
         Object.keys(this.states).forEach((index) => {
             const state = this.states[index];
-            if (typeof state !== 'object') return;
+            if (typeof state !== 'object' || !state.event) return;
 
             EventBus.subscribe(state.event, (eventEl) => {
                 this.changeState(index, eventEl);
@@ -27,7 +43,7 @@ export default class State {
 
         if (!eventEl || this.isThisInstance(eventEl)) {
             this.triggerStateTransitionMethods(this.states[newState]);
-            this.updateState(newState);
+            this.updateStateValue(newState);
         }
     }
 
@@ -36,28 +52,16 @@ export default class State {
     }
 
     triggerStateTransitionMethods(state) {
-        if (state.on) this.component[state.on]();
-        if (this.currentState && this.currentState.off) { this.component[this.currentState.off](); }
+        if (state && state.on) this.component[state.on]();
+        if (this.states[this.currentState] && this.states[this.currentState].off) {
+            this.component[this.states[this.currentState].off]();
+        }
     }
 
-    updateState(newState) {
+    updateStateValue(newState) {
         const dataName = this.name.charAt(0).toUpperCase() + this.name.slice(1);
         this.component.el.dataset[`state${dataName}`] = newState;
-        this.currentState = newState;
-    }
 
-    initStates() {
-        // wait for all StateMachines to be registered, then initialize everything
-        window.setTimeout(() => {
-            Object.keys(this.states).forEach((index) => {
-                if (this.states[index] === this.states.value) {
-                    if (!this.states[this.states.value]) {
-                        console.error('default method invalid for', this.component);
-                        return;
-                    }
-                    this.changeState(this.states.value, this.component.el);
-                }
-            });
-        }, 0);
+        this.currentState = newState;
     }
 }

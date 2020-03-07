@@ -45,7 +45,7 @@ export default class MainMenu extends Component {
             EventBus.publish('onMenuClose', this.el);
             EventBus.publish('onMenuViewportLg', this.el);
         } else {
-            const isOpen = this.StateMachine.states.toggle.currentState === 'open';
+            const isOpen = this.StateMachine.states.toggle.Value === 'open';
             this.el.setAttribute('aria-expanded', isOpen);
             EventBus.publish(isOpen ? 'onMenuOpen' : 'onMenuClose', this.el);
         }
@@ -63,13 +63,13 @@ export default class MainMenu extends Component {
     }
 
     openMenu() {
-        if (this.StateMachine.states.toggle.currentState !== 'fullscreen') {
+        if (this.StateMachine.states.toggle.Value !== 'fullscreen') {
             this.el.setAttribute('aria-expanded', true);
         }
     }
 
     closeMenu() {
-        if (!this.StateMachine || this.StateMachine.states.toggle.currentState !== 'fullscreen') {
+        if (!this.StateMachine || this.StateMachine.states.toggle.Value !== 'fullscreen') {
             this.el.setAttribute('aria-expanded', false);
         }
     }
