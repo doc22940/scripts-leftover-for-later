@@ -40,8 +40,8 @@ export default class SwipeDetection {
         this.removeStopListener();
 
         this.boundStartTrackSwipe = (event) => this.startTrackSwipe(event);
-        this.el.addEventListener('mousedown', this.boundStartTrackSwipe);
-        this.el.addEventListener('touchstart', this.boundStartTrackSwipe);
+        this.el.addEventListener('mousedown', this.boundStartTrackSwipe, { passive: true });
+        this.el.addEventListener('touchstart', this.boundStartTrackSwipe, { passive: true });
     }
 
     removeStartListener() {
@@ -85,14 +85,14 @@ export default class SwipeDetection {
         };
 
         this.boundStopTrackSwipe = (event) => this.stopTrackSwipe(event);
-        this.el.addEventListener('mouseup', this.boundStopTrackSwipe);
-        window.addEventListener('mouseout', this.boundStopTrackSwipe);
-        this.el.addEventListener('mouseout', this.boundStopTrackSwipe);
-        this.el.addEventListener('touchend', this.boundStopTrackSwipe);
-        this.el.addEventListener('touchcancel', this.boundStopTrackSwipe);
+        this.el.addEventListener('mouseup', this.boundStopTrackSwipe, { passive: true });
+        window.addEventListener('mouseout', this.boundStopTrackSwipe, { passive: true });
+        this.el.addEventListener('mouseout', this.boundStopTrackSwipe, { passive: true });
+        this.el.addEventListener('touchend', this.boundStopTrackSwipe, { passive: true });
+        this.el.addEventListener('touchcancel', this.boundStopTrackSwipe, { passive: true });
 
         this.boundTrackSwipe = (event) => this.trackSwipe(event);
-        document.body.addEventListener('mousemove', this.boundTrackSwipe);
+        document.body.addEventListener('mousemove', this.boundTrackSwipe, { passive: true });
         document.body.addEventListener('touchmove', this.boundTrackSwipe);
     }
 
