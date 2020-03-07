@@ -37,7 +37,7 @@ export default class State {
     }
 
     changeState(newState, eventEl) {
-        if (newState === this.currentState) {
+        if (!newState || newState === this.currentState) {
             return;
         }
 

@@ -4,6 +4,7 @@ export default class ColorSchemeToggle extends Component {
     prepare() {
         this.StateMachine = new StateMachine(this, {
             colorScheme: {
+                value: window.matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light',
                 dark: {
                     event: 'onColorSchemeDark',
                 },
@@ -27,7 +28,7 @@ export default class ColorSchemeToggle extends Component {
     }
 
     applyInitialState() {
-        if (window.localStorage.colorScheme) {
+        if (window.localStorage.colorScheme === 'dark' || window.localStorage.colorScheme === 'light') {
             this.colorSchemeToggle.checked = window.localStorage.colorScheme === 'dark';
             this.onToggle();
         } else {
