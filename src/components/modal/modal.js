@@ -1,3 +1,4 @@
+import './modal.scss';
 import Component from '../../helpers/component';
 
 export default class Modal extends Component {
@@ -22,14 +23,14 @@ export default class Modal extends Component {
         EventBus.subscribe('onOverlayClose', this.boundOnModalClose);
 
         this.boundOnModalOpen = () => { EventBus.publish('onModalOpen', this.el); };
-        EventBus.subscribe('onModalToggle', this.boundOnModalOpen);
+        EventBus.subscribe('onModalTrigger', this.boundOnModalOpen);
     }
 
     openModal() {
-        this.el.setAttribute('aria-expanded', true);
+        this.el.setAttribute('aria-hidden', false);
     }
 
     closeModal() {
-        this.el.setAttribute('aria-expanded', false);
+        this.el.setAttribute('aria-hidden', true);
     }
 }

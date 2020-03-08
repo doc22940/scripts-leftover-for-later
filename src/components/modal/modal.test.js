@@ -33,7 +33,7 @@ it('Component is initialized', () => {
 
     component.init();
 
-    expect(EventBus.subscribe).toHaveBeenCalledWith('onModalToggle', component.boundOnModalOpen);
+    expect(EventBus.subscribe).toHaveBeenCalledWith('onModalTrigger', component.boundOnModalOpen);
     expect(EventBus.subscribe).toHaveBeenCalledWith('onOverlayClose', component.boundOnModalClose);
 });
 
@@ -46,7 +46,7 @@ it('can open the modal', () => {
     states.forEach(state => {
         component.StateMachine.currentState = state;
         component.openModal();
-        expect(component.el.attributes['aria-expanded'].value).toBe('true');
+        expect(component.el.attributes['aria-hidden'].value).toBe('false');
     });
 })
 
@@ -59,6 +59,6 @@ it('can close the modal', () => {
     states.forEach(state => {
         component.StateMachine.currentState = state;
         component.closeModal();
-        expect(component.el.attributes['aria-expanded'].value).toBe('false');
+        expect(component.el.attributes['aria-hidden'].value).toBe('true');
     });
 })
