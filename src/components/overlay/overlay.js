@@ -60,6 +60,7 @@ export default class Overlay extends Component {
                 EventBus.publish('onOverlayClose', this.el);
             }
         };
+        EventBus.subscribe('onModalClose', this.menuClosed);
     }
 
     // eslint-disable-next-line class-methods-use-this
