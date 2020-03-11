@@ -33,13 +33,13 @@ export default class ComponentLoader {
     }
 
     updateDom() {
-        this.els.forEach((el) => {
+        Array.from(this.els).forEach((index) => {
             if (!window.ComponentLoader
                 || window.ComponentLoader.components.filter(
-                    (x) => x.component.el === el
+                    (x) => x.component.el === this.els[index]
                 ).length === 0
             ) {
-                this.registerComponent(el);
+                this.registerComponent(this.els[index]);
             }
         });
     }
