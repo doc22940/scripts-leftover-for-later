@@ -1,6 +1,3 @@
-$md-width: 70ch;
-$lg-width: 64.0625rem; // 1025px
-
 :root {
     --spacing-x: 1rem;
     --spacing-y: 1rem;
@@ -95,5 +92,33 @@ blockquote {
 
     > footer {
         margin-top: calc(var(--spacing-y) / 2);
+    }
+}
+
+button {
+    background: var(--background-inverted);
+    color: var(--font-inverted);
+    border: var(--line-width) solid var(--bg-grey);
+    font-size: var(--base-font-size);
+    cursor: pointer;
+
+    &:not(:disabled):hover {
+        border-color: var(--fg-grey);
+    }
+
+    &:not(:disabled):active {
+        border-color: var(--accent);
+    }
+
+    &:disabled {
+        border-style: dashed;
+        color: var(--fg-grey);
+        cursor: not-allowed;
+    }
+}
+
+@media screen and (min-width: $lg-width) {
+    :root {
+        --z-menu: var(--z-header);
     }
 }
