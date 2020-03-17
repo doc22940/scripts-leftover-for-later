@@ -42,8 +42,8 @@ export default class State {
         }
 
         if (!eventEl || this.isThisInstance(eventEl)) {
-            this.triggerStateTransitionMethods(this.states[newState]);
             this.updateStateValue(newState);
+            this.triggerStateTransitionMethods(this.states[newState]);
         }
     }
 

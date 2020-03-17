@@ -66,34 +66,33 @@ it('closes menu and and publishes event on lg viewport change', () =>{
 it('can open the menu drawer', () => {
     const states = ['open', 'closed'];
     const component = new Component();
-    component.el = document.querySelector('[data-component="mainMenu"]');
+    component.menuList = document.querySelector('[data-main-menu-el="menuList"]');
     component.StateMachine = StateMachineMock;
 
     states.forEach(state => {
         component.StateMachine.currentState = state;
-        component.openMenu();
-        expect(component.el.attributes['aria-expanded'].value).toBe('true');
+        expect(component.menuList.attributes['aria-hidden'].value).toBe('false');
     });
 })
 
 it('can close the menu drawer', () => {
     const states = ['open', 'closed'];
     const component = new Component();
-    component.el = document.querySelector('[data-component="mainMenu"]');
+    component.menuList = document.querySelector('[data-main-menu-el="menuList"]');
     component.StateMachine = StateMachineMock;
 
     states.forEach(state => {
         component.StateMachine.currentState = state;
-        component.closeMenu();
-        expect(component.el.attributes['aria-expanded'].value).toBe('false');
+        component.toggleA11yHelpers();
+        expect(component.menuList.attributes['aria-hidden'].value).toBe('true');
     });
 })
 
 it('can disable the menu', () => {
     const component = new Component();
-    component.el = document.querySelector('[data-component="mainMenu"]');
-    component.el.setAttribute('aria-expanded', true);
+    component.menuList = document.querySelector('[data-main-menu-el="menuList"]');
+    component.StateMachineMock.states.toggle.currentState = 'open';
+    component.toggleA11yHelpers();
 
-    component.disable();
-    expect(component.el.attributes['aria-expanded']).toBeUndefined();
+    expect(component.menuList.attributes['aria-hidden']).toBe('false');
 });

@@ -9,16 +9,15 @@ export default class MainMenu extends Component {
                 value: 'closed',
                 closed: {
                     event: 'onMenuClose',
-                    on: 'closeMenu',
+                    on: 'toggleA11yHelpers',
                 },
                 open: {
                     event: 'onMenuOpen',
-                    on: 'openMenu',
+                    on: 'toggleA11yHelpers',
                 },
                 fullscreen: {
                     event: 'onMenuViewportLg',
-                    on: 'disable',
-                    off: 'closeMenu',
+                    on: 'toggleA11yHelpers',
                 },
             },
         });
@@ -40,13 +39,17 @@ export default class MainMenu extends Component {
         this.checkbox.remove();
     }
 
+    toggleA11yHelpers() {
+        const isShown = this.StateMachine.states.toggle.Value === 'open';
+        this.menuList.setAttribute('aria-hidden', !isShown);
+    }
+
     handleViewportChanges(viewport) {
         if (viewport === 'lg') {
             EventBus.publish('onMenuClose', this.el);
             EventBus.publish('onMenuViewportLg', this.el);
         } else {
             const isOpen = this.StateMachine.states.toggle.Value === 'open';
-            this.el.setAttribute('aria-expanded', isOpen);
             EventBus.publish(isOpen ? 'onMenuOpen' : 'onMenuClose', this.el);
         }
     }
@@ -60,21 +63,5 @@ export default class MainMenu extends Component {
         Array.from(this.anchorLinks).forEach((anchorLink) => {
             anchorLink.addEventListener('click', this.boundOnMenuClose);
         });
-    }
-
-    openMenu() {
-        if (this.StateMachine.states.toggle.Value !== 'fullscreen') {
-            this.el.setAttribute('aria-expanded', true);
-        }
-    }
-
-    closeMenu() {
-        if (!this.StateMachine || this.StateMachine.states.toggle.Value !== 'fullscreen') {
-            this.el.setAttribute('aria-expanded', false);
-        }
-    }
-
-    disable() {
-        this.el.removeAttribute('aria-expanded');
     }
 }

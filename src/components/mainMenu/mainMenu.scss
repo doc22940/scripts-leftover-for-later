@@ -43,7 +43,7 @@
         background-color: var(--background-inverted);
         pointer-events: all;
 
-        [aria-expanded="false"] > & {
+        &[aria-hidden="true"] {
             visibility: hidden;
 
             @media (prefers-reduced-motion: no-preference) {
@@ -51,7 +51,7 @@
             }
         }
         
-        [aria-expanded="true"] > &,
+        &[aria-hidden="false"],
         .main-menu__check:checked ~ & {
             transform: translateX(0);
             visibility: visible;
@@ -109,8 +109,7 @@
             background-color: none;
             transition: none;
 
-            &, 
-            [aria-expanded] > & {
+            &[aria-hidden] {
                 visibility: visible;
             }
         }
