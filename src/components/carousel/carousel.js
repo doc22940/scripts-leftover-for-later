@@ -72,11 +72,17 @@ export default class Carousel extends Component {
 
     handleKeys(event) {
         switch (event.keyCode) {
-        // arrow left
-        case 37: this.moveGridToIndex(Math.max(parseInt(this.boundaryItems[0], 10), 1) - 1, true);
+        case 37: // arrow left
+            this.moveGridToIndex(Math.max(
+                parseInt(this.boundaryItems[0], 10),
+                1
+            ) - 1, true);
             break;
-        // arrow right
-        case 39: this.moveGridToIndex(Math.min(parseInt(this.boundaryItems[1], 10), this.items.length - 2) + 1, false);
+        case 39: // arrow right
+            this.moveGridToIndex(Math.min(
+                parseInt(this.boundaryItems[1], 10),
+                this.items.length - 2
+            ) + 1, false);
             break;
         default:
         }
