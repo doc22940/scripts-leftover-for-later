@@ -42,6 +42,7 @@ export default class MainMenu extends Component {
     toggleA11yHelpers() {
         const isShown = this.StateMachine.states.toggle.Value === 'open';
         this.menuList.setAttribute('aria-hidden', !isShown);
+        FocusTrap.Element = isShown ? this.menuList : null;
     }
 
     handleViewportChanges(viewport) {

@@ -29,9 +29,11 @@ export default class Modal extends Component {
 
     openModal() {
         this.el.setAttribute('aria-hidden', false);
+        FocusTrap.Element = this.el;
     }
 
     closeModal() {
         this.el.setAttribute('aria-hidden', true);
+        FocusTrap.Element = null;
     }
 }

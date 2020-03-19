@@ -47,6 +47,7 @@ module.exports = {
     },
     'globals': {
         'EventBus': true,
+        'FocusTrap': true,
         'StateMachine': true,
         'ComponentLoader': true
     }

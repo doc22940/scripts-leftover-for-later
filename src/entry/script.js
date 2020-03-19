@@ -5,6 +5,7 @@ import ComponentLoader from '../helpers/componentLoader';
 import Component from '../helpers/component';
 import StateMachine from '../helpers/stateMachine';
 import EventBus from '../helpers/eventBus';
+import FocusTrap from '../helpers/focusTrap';
 
 // register components here
 window.Modules = {
@@ -34,5 +35,6 @@ window.Modules = {
 
 window.EventBus = new EventBus();
 window.StateMachine = StateMachine;
+window.FocusTrap = new FocusTrap();
 window.ComponentLoader = new ComponentLoader();
 window.ComponentLoader.updateDom();
