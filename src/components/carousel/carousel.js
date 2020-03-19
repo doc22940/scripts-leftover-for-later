@@ -5,7 +5,6 @@ import SwipeDetection from '../../helpers/swipeDetection';
 export default class Carousel extends Component {
     prepare() {
         this.items = this.grid.children;
-        this.itemcount = this.items.length - 1;
         this.currentPosition = 0; // px
         this.boundaryItems = [];
     }
@@ -19,19 +18,22 @@ export default class Carousel extends Component {
         });
 
         this.boundOnSwipe = (event) => { this.onSwipe(event); };
-        this.el.addEventListener('swipe', (event) => { this.boundOnSwipe(event); });
+        this.el.addEventListener('swipe', this.boundOnSwipe);
 
         this.boundOnSwipeStop = (event) => { this.onSwipeStop(event); };
-        this.el.addEventListener('swipestop', (event) => { this.boundOnSwipeStop(event); });
+        this.el.addEventListener('swipestop', this.boundOnSwipeStop);
+
+        this.boundHandleKeys = (event) => { this.handleKeys(event); };
+        this.el.addEventListener('keyup', this.boundHandleKeys);
 
         this.observeItems();
-        this.calculateBoundaries();
     }
 
     observeItems() {
         const callback = (entries) => {
             Object.keys(entries).forEach((index) => {
                 entries[index].target.setAttribute('data-carousel-visible', entries[index].isIntersecting);
+                this.calculateBoundaries();
             });
         };
 
@@ -66,6 +68,18 @@ export default class Carousel extends Component {
         const reverse = xDistance > 0;
         const target = reverse ? this.boundaryItems[0] : this.boundaryItems[1];
         this.moveGridToIndex(target, reverse);
+    }
+
+    handleKeys(event) {
+        switch (event.keyCode) {
+        // arrow left
+        case 37: this.moveGridToIndex(Math.max(parseInt(this.boundaryItems[0], 10), 1) - 1, true);
+            break;
+        // arrow right
+        case 39: this.moveGridToIndex(Math.min(parseInt(this.boundaryItems[1], 10), this.items.length - 2) + 1, false);
+            break;
+        default:
+        }
     }
 
     moveGridBy(distance) {
