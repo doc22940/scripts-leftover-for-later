@@ -28,6 +28,13 @@ export default class Overlay extends Component {
             EventBus.publish('onOverlayClose', this.el);
         };
         this.el.addEventListener('click', this.boundOnClick);
+
+        this.boundOnKeyUp = (event) => {
+            if (event.keyCode === 27) { // if Esc
+                this.unassignElement();
+                EventBus.publish('onOverlayClose', this.el);
+            }
+        };
     }
 
     handleMenu() {
@@ -66,11 +73,13 @@ export default class Overlay extends Component {
     // eslint-disable-next-line class-methods-use-this
     publishOpenEvents() {
         EventBus.publish('onDisableScroll');
+        document.addEventListener('keyup', this.boundOnKeyUp);
     }
 
     // eslint-disable-next-line class-methods-use-this
     publishCloseEvents() {
         EventBus.publish('onEnableScroll');
+        document.removeEventListener('keyup', this.boundOnKeyUp);
     }
 
     assignElement(el) {
