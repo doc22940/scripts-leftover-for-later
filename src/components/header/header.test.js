@@ -9,6 +9,16 @@ window.EventBus = {
     subscribe: jest.fn()
 }
 
+const StateMachineMock = {
+    states: {
+        menuButton: {
+            value: 'inactive',
+            inactive: {},
+            active: {},
+        },
+    }
+}
+
 beforeEach(() => {
     // Clear all instances and calls to constructor and all methods:
     ComponentClass.mockClear();
@@ -36,7 +46,9 @@ it('Component is initialized', () => {
 
 it('toggles menu', () => {
     const component = new Component();
-    component.el = 'mockEl';
+    component.StateMachine = StateMachineMock;
+    component.el = document.querySelector('[data-component="header"]');
+    component.menuButton = document.querySelector('[data-header-el="menuButton"]');
     
     component.toggleMenuButton();
     expect(EventBus.publish).toHaveBeenCalledWith('onMenuToggle', component.el);
