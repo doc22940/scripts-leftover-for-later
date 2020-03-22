@@ -8,10 +8,13 @@ window.EventBus = {
     publish: jest.fn(),
     subscribe: jest.fn()
 }
+
+window.FocusTrap = jest.fn();
+
 const StateMachineMock = {
     states: {
         toggle: {
-            currentState: 'closed'
+            Value: 'closed'
         }
     }
 }
@@ -63,36 +66,16 @@ it('closes menu and and publishes event on lg viewport change', () =>{
     });
 });
 
-it('can open the menu drawer', () => {
-    const states = ['open', 'closed'];
+it('can toggle the menu drawer', () => {
     const component = new Component();
     component.menuList = document.querySelector('[data-main-menu-el="menuList"]');
     component.StateMachine = StateMachineMock;
 
-    states.forEach(state => {
-        component.StateMachine.currentState = state;
-        expect(component.menuList.attributes['aria-hidden'].value).toBe('false');
-    });
-})
-
-it('can close the menu drawer', () => {
-    const states = ['open', 'closed'];
-    const component = new Component();
-    component.menuList = document.querySelector('[data-main-menu-el="menuList"]');
-    component.StateMachine = StateMachineMock;
-
-    states.forEach(state => {
-        component.StateMachine.currentState = state;
-        component.toggleA11yHelpers();
-        expect(component.menuList.attributes['aria-hidden'].value).toBe('true');
-    });
-})
-
-it('can disable the menu', () => {
-    const component = new Component();
-    component.menuList = document.querySelector('[data-main-menu-el="menuList"]');
-    component.StateMachineMock.states.toggle.currentState = 'open';
+    component.StateMachine.states.toggle.Value = 'open';
     component.toggleA11yHelpers();
+    expect(component.menuList.attributes['aria-hidden'].value).toBe('false');
 
-    expect(component.menuList.attributes['aria-hidden']).toBe('false');
+    component.StateMachine.states.toggle.Value = 'closed';
+    component.toggleA11yHelpers();
+    expect(component.menuList.attributes['aria-hidden'].value).toBe('true');
 });
