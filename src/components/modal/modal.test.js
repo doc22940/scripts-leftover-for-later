@@ -1,6 +1,9 @@
 import ComponentClass from '../../helpers/component';
 import Component from './modal';
 
+jest.mock("./modal.scss", () => {
+    return {};
+});
 document.body.innerHTML = require('../../components/modal/modal.html');
 jest.mock('../../helpers/component');
 
@@ -8,6 +11,9 @@ window.EventBus = {
     publish: jest.fn(),
     subscribe: jest.fn()
 }
+
+window.FocusTrap = jest.fn();
+
 const StateMachineMock = {
     states: {
         toggle: {
@@ -30,6 +36,7 @@ it('Component is initialized', () => {
     const component = new Component();
     component.boundOnModalOpen = jest.fn();
     component.boundOnModalClose = jest.fn();
+    component.closeButton = document.querySelector('[data-modal-el="closeButton"]');
 
     component.init();
 
