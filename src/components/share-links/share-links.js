@@ -8,7 +8,6 @@ export default class shareLinks extends Component {
     }
 
     init() {
-        debugger;
         if (!this.url) { return; }
 
         this.boundOnClick = (event) => { this.onClick(event); };
