@@ -1,0 +1,5 @@
+.share-links {
+    display: grid;
+    grid-template-columns: repeat(4, min-content);
+    grid-gap: var(--spacing-x);
+}

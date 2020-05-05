@@ -19,6 +19,7 @@ window.Modules = {
     index: () => import(/* webpackMode: 'eager' */ '../components/index/index'),
     mainMenu: () => import(/* webpackMode: 'eager' */ '../components/mainMenu/mainMenu'),
     overlay: () => import(/* webpackMode: 'eager' */ '../components/overlay/overlay'),
+    shareLinks: () => import(/* webpackMode: 'eager' */ '../components/share-links/share-links'),
     viewportManager: () => import(/* webpackMode: 'eager' */ '../components/viewportManager/viewportManager'),
 
     /**
