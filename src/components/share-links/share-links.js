@@ -10,6 +10,7 @@ export default class shareLinks extends Component {
     init() {
         if (!this.url) { return; }
 
+        this.el.removeAttribute('hidden');
         this.boundOnClick = (event) => { this.onClick(event); };
         this.el.addEventListener('click', this.boundOnClick);
     }
@@ -18,8 +19,6 @@ export default class shareLinks extends Component {
         event.preventDefault();
 
         if (navigator.share) {
-            this.el.removeAttribute('hidden');
-
             navigator.share({
                 title: this.title,
                 text: this.text,
